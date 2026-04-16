@@ -1,10 +1,8 @@
 import streamlit as st
 from anthropic import Anthropic
-import os
 from datetime import datetime
 
-os.environ["ANTHROPIC_API_KEY"] = "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"
-client = Anthropic()
+client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
 ACCESS_CODES = {
     "BETA001": ("beta", "2026-04-19"),
