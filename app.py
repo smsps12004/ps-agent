@@ -5,9 +5,9 @@ from datetime import datetime
 client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
 ACCESS_CODES = {
-    "BETA001": ("beta", "2026-04-19"),
-    "BETA002": ("beta", "2026-04-19"),
-    "BETA003": ("beta", "2026-04-19"),
+    "BETA001": ("beta", "2026-05-19"),
+    "BETA002": ("beta", "2026-05-19"),
+    "BETA003": ("beta", "2026-05-19"),
     "SAILOR001": ("individual", "2026-05-12"),
     "SAILOR002": ("individual", "2026-05-12"),
     "SAILOR003": ("individual", "2026-05-12"),
