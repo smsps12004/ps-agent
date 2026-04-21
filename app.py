@@ -80,7 +80,7 @@ st.title("⚓ PS Agent")
 st.caption("by Strategic Sailor — Your AI Personnel Specialist")
 st.divider()
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder", "✈️ Travel Assistant"])
 
 SYSTEM_PROMPT = "You are PS Agent, an expert U.S. Navy Personnel Specialist created by Strategic Sailor. Answer questions like a senior PS1. Always cite MILPERSMAN article numbers. Give practical action steps. End complex answers with: Verify current guidance in MILPERSMAN or with your chain of command."
 
@@ -1106,6 +1106,537 @@ LES DATA:
         if st.button("Clear LES & Start Over", key="clear_les"):
             st.session_state.les_explanation = ""
             st.session_state.les_messages = []
+            st.rerun()
+
+# ── TRAVEL ASSISTANT CONSTANTS ─────────────────────────────────────────────────
+
+TRAVEL_SYSTEM_PROMPT = """You are a senior Navy PS1 and certified Defense Travel Administrator with 15 years of experience processing travel claims, DTS vouchers, PCS orders, and reserve travel entitlements. You advise PS shops, travel clerks, and sailors on every aspect of Navy travel policy.
+
+REGULATORY KNOWLEDGE:
+- Joint Travel Regulation (JTR) — governing document for all DoD travel (replaced JFTR in 2015); travel.dod.mil
+- DODFMR Volume 9 — travel pay and allowances
+- NAVSUP Publication 200 — Navy supply travel procedures
+- RESPERSMAN 1001 series — Reserve travel and pay
+- MILPERSMAN 1300 series — PCS/orders policy
+- GSA.gov — CONUS per diem rates (updated 1 Oct annually)
+- PDTATAC — OCONUS per diem rates (updated monthly)
+- DTS Policy at dtsproweb.defensetravel.osd.mil
+
+ORDER TYPES AND ENTITLEMENTS:
+
+PCS (Permanent Change of Station) — JTR Chapter 5 (Active Duty) / Chapter 10 (Reserve):
+- Travel per diem en route to new PDS
+- DLA (Dislocation Allowance) — offsets cost of moving household
+- TLE (Temporary Lodging Expense) — up to 10 days CONUS, 60 days OCONUS
+- MALT (Monetary Allowance in Lieu of Transportation) — POV mileage at published rate
+- HHG/UB shipment — household goods and unaccompanied baggage
+- TQSE/TQSA — temporary quarters subsistence expense
+- Report-not-later-than (RNLTD) date governs travel window
+
+TAD (Temporary Additional Duty) — JTR Chapter 2:
+- Per diem at actual lodging cost + M&IE (or flat rate if gov quarters available)
+- Rental car must be authorized in orders or by AO
+- Government meals proportionally reduce M&IE
+- Submit DD 1351-2 within 5 business days of return (JTR 2.1)
+
+IDTT (Inactive Duty Training Travel) — JTR 10206 (Reserve-specific):
+- Authorized when round-trip travel exceeds 50 miles or requires overnight stay
+- Same per diem structure as TAD
+- Orders must specifically state IDTT authorization
+- Common error: claiming IDTT when 50-mile threshold not met — automatically disqualified
+
+AT (Annual Training) — JTR Chapter 10 (Reserve):
+- Travel from home of record (HOR) or PDS to training site — lesser of the two distances
+- Per diem at 75% on travel days, full rate at training location
+- Orders must show fund cite for travel
+- Typically 2 weeks (14 days) maximum per fiscal year without special authorization
+
+ADT (Active Duty for Training) — JTR Chapter 10 (Reserve):
+- Same travel entitlements as AT; distinction is in the duty type code
+- May include BAH and BAS if extended beyond IDT threshold
+
+IDT (Inactive Duty Training) — JTR 1026:
+- No travel entitlement for routine drill at assigned unit
+- Travel only authorized when CO specifically directs it and orders reflect that authorization
+
+DD FORM 1351-2 (TRAVEL VOUCHER OR SUBVOUCHER) — BLOCK BY BLOCK:
+Block 1 — Payment: EFT direct deposit, split disbursement to GTC (mandatory when GTC used), or check
+Block 2 — Name: Last, First, MI — must match DEERS/pay record exactly
+Block 3 — Grade: Pay grade (E-5, O-3, etc.)
+Block 4 — SSN: Full SSN on secure systems only; last 4 on unclassified copies
+Block 5 — Taxpayer ID: Leave blank for military members
+Block 6 — Period of Travel: From/To dates matching orders exactly
+Block 7 — Organization: Unit name and UIC
+Block 8 — Purpose of Travel: Reference orders number, type, and issuing authority
+Block 9 — Itinerary: Each travel leg with date, city, mode of transport, per diem claimed
+Block 10 — Reimbursable Expenses: All expenses >$75 itemized with receipts; lodging receipts required regardless of amount
+Block 11 — Advance/Payments: DTS advances, GTC split disbursement amounts already paid
+Block 12 — Accounting Classification: Fund cite from orders — must match exactly
+Block 13 — Signature: Member signature and date
+Block 14 — Approving Official: AO signature, date, title, phone
+
+DD FORM 1351-6 (MULTI-PURPOSE CONTINUATION SHEET):
+- Used when Block 9 itinerary or Block 10 expenses exceed space on DD 1351-2
+- Must reference the parent DD 1351-2 date and traveler name at top
+- All per diem calculations shown line by line
+- Required enclosures listed at bottom
+
+COMMON TRAVEL CLAIM ERRORS:
+1. No lodging receipts — required for all commercial lodging, every night
+2. M&IE not reduced for government-provided meals
+3. POV mileage from wrong origin — must use lesser of: distance from home or from PDS
+4. Missing orders as enclosure — mandatory with every voucher
+5. IDTT claimed without meeting 50-mile round-trip threshold
+6. Wrong per diem rate — always verify exact city/zip at GSA or PDTATAC
+7. Rental car without written authorization in orders or from AO
+8. GTC split disbursement omitted when GTC was used — mandatory per DTS policy
+9. Voucher submitted more than 5 business days after return — late submission flag
+10. Advance not reconciled — unreconciled advances create debt in MMPA
+
+PER DIEM RATES (FY2025 REFERENCE):
+Standard CONUS rate: $157 lodging + $68 M&IE = $225/day (non-listed locations)
+High-cost areas (DC, NYC, SF, etc.): higher rates — verify at GSA.gov by zip code
+M&IE breakdown: Breakfast 20%, Lunch 25%, Dinner 35%, Incidentals 20%
+First/last travel day: 75% of M&IE only (no lodging if returning home same day)
+Government meal deductions (FY2025 standard): Breakfast $13.60, Lunch $17.00, Dinner $37.40
+OCONUS: Verify at PDTATAC — rates vary widely by country and city; updated monthly
+
+DTS (DEFENSE TRAVEL SYSTEM):
+Access: dtsproweb.defensetravel.osd.mil (CAC required)
+Workflow: Create Authorization → Travel → Create Voucher → Submit to AO
+Common errors: duplicate authorizations, wrong fund cite, AO not assigned, GTCC charges unmatched
+Voucher amendments: use "Amend Voucher" — never create a duplicate voucher
+Split disbursement: must match GTCC charges to the cent or DTS will reject
+DTS Help Desk: 1-888-435-7146
+
+NROWS (NAVY RESERVE ORDER WRITING SYSTEM):
+Access: nrows.navy.mil (CAC required)
+Order types: AT, ADT, ADSW, IDTT, MOB, IADT
+Routing: NOSC Admin → Unit CO → Orders Issuing Authority → Fund Certifier
+Common issues: fund cite not loaded, end strength ceiling exceeded, billet not coded for requested order type, orders not routed before travel date
+Amendments: submit amendment request in NROWS; do not travel before amendment is approved
+NROWS Help Desk: 1-800-621-8853
+
+NSIPS/MMPA TRAVEL IMPACT:
+- PCS gains/losses must be entered in NSIPS within 5 days of transfer (RESPERSMAN)
+- Travel advances appear in MMPA as debts until voucher is approved and offset
+- Unreconciled advances 90+ days old referred to DFAS-Cleveland for collection
+- BAH changes effective date of PCS must match NSIPS transaction date
+- DLA is processed through DFAS after NSIPS reflects PCS gain
+- MMPA corrections for travel overpayments: submit DD 2131 to DFAS
+
+Always end with: Verify current rates and policy at JTR (travel.dod.mil) or with your servicing travel office."""
+
+TRAVEL_SECTIONS = [
+    "1 — Travel Claims",
+    "2 — DTS Help",
+    "3 — NROWS",
+    "4 — Per Diem",
+    "5 — NSIPS / MMPA",
+    "6 — Ask Travel Agent",
+]
+
+TRAVEL_ORDER_TYPES = ["TAD", "PCS", "AT (Annual Training)", "ADT", "IDTT", "IDT (authorized travel)"]
+
+TRAVEL_DTS_ISSUES = [
+    "Voucher rejected by AO",
+    "GTCC charges not matching",
+    "Duplicate authorization created",
+    "Fund cite error on authorization",
+    "How to amend an approved voucher",
+]
+
+TRAVEL_NROWS_ISSUES = [
+    "Orders not routing past NOSC Admin",
+    "Fund cite not loading",
+    "End strength ceiling exceeded",
+    "How to request an amendment",
+    "Billet not coded for order type",
+]
+
+TRAVEL_MMPA_ISSUES = [
+    "Travel advance showing as debt",
+    "Unreconciled advance 90+ days",
+    "DLA not received after PCS",
+    "BAH not updated after PCS",
+    "DFAS debt letter received for travel",
+]
+
+# ── TRAVEL ASSISTANT TAB ────────────────────────────────────────────────────────
+with tab6:
+    st.subheader("✈️ Travel Assistant")
+    st.caption("DD 1351-2, DTS, NROWS, Per Diem, NSIPS/MMPA — Active Duty and Reserve travel guidance.")
+
+    travel_section = st.selectbox("Select Section", TRAVEL_SECTIONS, key="travel_section")
+    st.divider()
+
+    # ── SECTION 1: TRAVEL CLAIMS ───────────────────────────────────────────────
+    if travel_section == TRAVEL_SECTIONS[0]:
+        st.markdown("#### Travel Claims — DD 1351-2 / DD 1351-6 Drafter")
+        st.caption("Enter your travel details and PS Agent will walk through every block, flag errors, and draft your claim.")
+
+        tc_col1, tc_col2 = st.columns(2)
+        with tc_col1:
+            tc_order_type = st.selectbox("Order Type", TRAVEL_ORDER_TYPES, key="tc_order_type")
+            tc_name       = st.text_input("Sailor Name (Last, First MI)", placeholder="Smith, John A.", key="tc_name")
+            tc_grade      = st.text_input("Pay Grade", placeholder="E-5", key="tc_grade")
+            tc_uic        = st.text_input("Unit / UIC", placeholder="USS EXAMPLE (DDG-99) / 12345", key="tc_uic")
+        with tc_col2:
+            tc_from_date  = st.text_input("Travel From Date", placeholder="2025-03-01", key="tc_from_date")
+            tc_to_date    = st.text_input("Travel To Date", placeholder="2025-03-07", key="tc_to_date")
+            tc_from_loc   = st.text_input("Departed From", placeholder="Norfolk, VA", key="tc_from_loc")
+            tc_to_loc     = st.text_input("Destination", placeholder="San Diego, CA", key="tc_to_loc")
+
+        tc_mode = st.selectbox("Mode of Travel", ["POV (Personal Vehicle)", "Commercial Air", "Government Vehicle", "Rental Car", "Mixed"], key="tc_mode")
+
+        tc_col3, tc_col4 = st.columns(2)
+        with tc_col3:
+            tc_lodging    = st.text_input("Nightly Lodging Cost ($)", placeholder="e.g. 145.00", key="tc_lodging")
+            tc_meals_govt = st.text_input("Government Meals Provided (per day)", placeholder="e.g. 0, 1, or 2", key="tc_meals_govt")
+        with tc_col4:
+            tc_mileage    = st.text_input("POV Miles Driven (if applicable)", placeholder="e.g. 842", key="tc_mileage")
+            tc_advance    = st.text_input("Travel Advance Received ($)", placeholder="e.g. 0.00", key="tc_advance")
+
+        tc_notes = st.text_area(
+            "Additional Details / Expenses / Special Circumstances",
+            placeholder="Example: Rental car was authorized in orders. Had to purchase $95 gas. GTC used for airfare. One night lodging receipt lost.",
+            height=90, key="tc_notes"
+        )
+
+        if st.button("Draft Travel Claim Guidance", type="primary", key="gen_travel_claim"):
+            if not tc_name.strip() or not tc_from_loc.strip() or not tc_to_loc.strip():
+                st.warning("Enter sailor name, departure location, and destination first.")
+            else:
+                with st.spinner("Drafting travel claim..."):
+                    tc_prompt = f"""Draft complete DD 1351-2 travel claim guidance for the following travel. Walk through every applicable block, state what should be entered, calculate per diem where possible, flag any potential errors or missing items, and list all required enclosures.
+
+ORDER TYPE: {tc_order_type}
+SAILOR: {tc_name} | Grade: {tc_grade} | Unit/UIC: {tc_uic}
+TRAVEL PERIOD: {tc_from_date} to {tc_to_date}
+ROUTE: {tc_from_loc} → {tc_to_loc}
+MODE: {tc_mode}
+LODGING: ${tc_lodging}/night commercial lodging
+GOVT MEALS PROVIDED/DAY: {tc_meals_govt}
+POV MILES: {tc_mileage}
+ADVANCE RECEIVED: ${tc_advance}
+ADDITIONAL DETAILS: {tc_notes if tc_notes.strip() else "None"}
+
+Provide:
+1. Block-by-block DD 1351-2 instructions with what to enter in each field
+2. Per diem calculation (lodging + M&IE, adjusted for govt meals and travel days)
+3. Any required DD 1351-6 continuation sheet instructions
+4. Required enclosures list
+5. Any errors or red flags to address before submission"""
+
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=2500,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=[{"role": "user", "content": tc_prompt}]
+                    )
+                    tc_out = response.content[0].text
+                    st.divider()
+                    st.markdown("### Travel Claim Guidance")
+                    st.markdown(tc_out)
+                    st.download_button(
+                        label="📥 Download Travel Claim Guidance",
+                        data=tc_out,
+                        file_name=f"TravelClaim_{tc_name.replace(' ', '_').replace(',', '')}.txt",
+                        mime="text/plain"
+                    )
+
+    # ── SECTION 2: DTS HELP ────────────────────────────────────────────────────
+    elif travel_section == TRAVEL_SECTIONS[1]:
+        st.markdown("#### DTS Help — Defense Travel System")
+        st.caption("Get step-by-step DTS guidance for authorizations, vouchers, amendments, and rejections.")
+
+        if "dts_messages" not in st.session_state:
+            st.session_state.dts_messages = []
+
+        for msg in st.session_state.dts_messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+
+        if len(st.session_state.dts_messages) == 0:
+            st.markdown("**Common DTS issues:**")
+            dts_cols = st.columns(3)
+            for i, issue in enumerate(TRAVEL_DTS_ISSUES):
+                with dts_cols[i % 3]:
+                    if st.button(issue, key=f"dts_quick_{i}"):
+                        st.session_state.dts_starter = issue
+
+        if "dts_starter" in st.session_state and st.session_state.dts_starter:
+            prompt = st.session_state.dts_starter
+            st.session_state.dts_starter = None
+            st.session_state.dts_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.dts_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.dts_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if prompt := st.chat_input("Ask a DTS question...", key="dts_input"):
+            st.session_state.dts_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.dts_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.dts_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if st.button("Clear DTS Chat", key="clear_dts"):
+            st.session_state.dts_messages = []
+            st.rerun()
+
+    # ── SECTION 3: NROWS ──────────────────────────────────────────────────────
+    elif travel_section == TRAVEL_SECTIONS[2]:
+        st.markdown("#### NROWS — Navy Reserve Order Writing System")
+        st.caption("Step-by-step guidance on writing, routing, and amending reserve orders in NROWS.")
+
+        if "nrows_messages" not in st.session_state:
+            st.session_state.nrows_messages = []
+
+        for msg in st.session_state.nrows_messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+
+        if len(st.session_state.nrows_messages) == 0:
+            st.markdown("**Common NROWS issues:**")
+            nrows_cols = st.columns(3)
+            for i, issue in enumerate(TRAVEL_NROWS_ISSUES):
+                with nrows_cols[i % 3]:
+                    if st.button(issue, key=f"nrows_quick_{i}"):
+                        st.session_state.nrows_starter = issue
+
+        if "nrows_starter" in st.session_state and st.session_state.nrows_starter:
+            prompt = st.session_state.nrows_starter
+            st.session_state.nrows_starter = None
+            st.session_state.nrows_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.nrows_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if prompt := st.chat_input("Ask an NROWS question...", key="nrows_input"):
+            st.session_state.nrows_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.nrows_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if st.button("Clear NROWS Chat", key="clear_nrows"):
+            st.session_state.nrows_messages = []
+            st.rerun()
+
+    # ── SECTION 4: PER DIEM ───────────────────────────────────────────────────
+    elif travel_section == TRAVEL_SECTIONS[3]:
+        st.markdown("#### Per Diem — Rates and M&IE Calculator")
+        st.caption("Get per diem rate guidance and M&IE calculations for CONUS and OCONUS travel.")
+
+        pd_col1, pd_col2 = st.columns(2)
+        with pd_col1:
+            pd_location   = st.text_input("TDY / Training Location", placeholder="e.g. San Diego, CA or Yokosuka, Japan", key="pd_location")
+            pd_order_type = st.selectbox("Order Type", TRAVEL_ORDER_TYPES, key="pd_order_type")
+            pd_nights     = st.number_input("Number of Nights", min_value=0, max_value=365, value=5, key="pd_nights")
+        with pd_col2:
+            pd_travel_days = st.number_input("Travel Days (first/last at 75%)", min_value=0, max_value=10, value=2, key="pd_travel_days")
+            pd_govt_meals  = st.selectbox("Government Meals Provided Per Day", [0, 1, 2, 3], key="pd_govt_meals")
+            pd_lodging_actual = st.text_input("Actual Nightly Lodging Cost ($)", placeholder="e.g. 139.00", key="pd_lodging_actual")
+
+        pd_notes = st.text_area("Any additional details", placeholder="Example: Gov quarters were available but full — denied in writing. Reserve AT orders. Fly-in on Day 1.", height=70, key="pd_notes")
+
+        if st.button("Calculate Per Diem", type="primary", key="gen_per_diem"):
+            if not pd_location.strip():
+                st.warning("Enter TDY/training location first.")
+            else:
+                with st.spinner("Calculating per diem..."):
+                    pd_prompt = f"""Calculate the per diem entitlement for the following travel. Show your work step by step.
+
+LOCATION: {pd_location}
+ORDER TYPE: {pd_order_type}
+TRAVEL NIGHTS: {pd_nights}
+TRAVEL DAYS (75% M&IE days): {pd_travel_days}
+GOVERNMENT MEALS PROVIDED PER DAY: {pd_govt_meals} meals
+ACTUAL LODGING COST PER NIGHT: ${pd_lodging_actual if pd_lodging_actual.strip() else "Unknown — use standard rate"}
+ADDITIONAL DETAILS: {pd_notes if pd_notes.strip() else "None"}
+
+Provide:
+1. Applicable per diem rate for this location (note if CONUS/OCONUS and cite GSA or PDTATAC)
+2. Lodging entitlement calculation (actual cost vs. cap)
+3. M&IE calculation — full days vs. 75% travel days
+4. Government meal deductions if applicable
+5. Total per diem entitlement for the entire trip
+6. Any flags or issues to be aware of (e.g., government quarters available, rate lookup needed)"""
+
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1500,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=[{"role": "user", "content": pd_prompt}]
+                    )
+                    pd_out = response.content[0].text
+                    st.divider()
+                    st.markdown(f"### Per Diem — {pd_location}")
+                    st.markdown(pd_out)
+                    st.caption("⚠️ Verify exact rates at GSA.gov (CONUS) or PDTATAC (OCONUS) before submitting your claim.")
+                    st.download_button(
+                        label="📥 Download Per Diem Calculation",
+                        data=pd_out,
+                        file_name=f"PerDiem_{pd_location.replace(' ', '_').replace(',', '')}.txt",
+                        mime="text/plain"
+                    )
+
+    # ── SECTION 5: NSIPS / MMPA ───────────────────────────────────────────────
+    elif travel_section == TRAVEL_SECTIONS[4]:
+        st.markdown("#### NSIPS / MMPA — Travel Transactions & Pay Account")
+        st.caption("Guidance on travel-related NSIPS entries, MMPA debts, DLA, BAH changes, and DFAS reconciliation.")
+
+        if "mmpa_messages" not in st.session_state:
+            st.session_state.mmpa_messages = []
+
+        for msg in st.session_state.mmpa_messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+
+        if len(st.session_state.mmpa_messages) == 0:
+            st.markdown("**Common NSIPS/MMPA travel issues:**")
+            mmpa_cols = st.columns(3)
+            for i, issue in enumerate(TRAVEL_MMPA_ISSUES):
+                with mmpa_cols[i % 3]:
+                    if st.button(issue, key=f"mmpa_quick_{i}"):
+                        st.session_state.mmpa_starter = issue
+
+        if "mmpa_starter" in st.session_state and st.session_state.mmpa_starter:
+            prompt = st.session_state.mmpa_starter
+            st.session_state.mmpa_starter = None
+            st.session_state.mmpa_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.mmpa_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if prompt := st.chat_input("Ask an NSIPS or MMPA travel question...", key="mmpa_input"):
+            st.session_state.mmpa_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.mmpa_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if st.button("Clear NSIPS/MMPA Chat", key="clear_mmpa"):
+            st.session_state.mmpa_messages = []
+            st.rerun()
+
+    # ── SECTION 6: ASK TRAVEL AGENT ───────────────────────────────────────────
+    elif travel_section == TRAVEL_SECTIONS[5]:
+        st.markdown("#### Ask Travel Agent")
+        st.caption("Open chat with your AI Travel Agent — JTR, DD 1351-2, DTS, NROWS, per diem, and more.")
+
+        if "travel_messages" not in st.session_state:
+            st.session_state.travel_messages = []
+
+        for msg in st.session_state.travel_messages:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
+
+        if len(st.session_state.travel_messages) == 0:
+            st.markdown("**Common travel questions:**")
+            tq_col1, tq_col2 = st.columns(2)
+            with tq_col1:
+                if st.button("What are my PCS travel entitlements?"):
+                    st.session_state.travel_starter = "What are my PCS travel entitlements as an Active Duty sailor?"
+                if st.button("How do I claim IDTT as a Reservist?"):
+                    st.session_state.travel_starter = "How do I claim IDTT travel as a Navy Reservist? What are the rules and how do I fill out the DD 1351-2?"
+            with tq_col2:
+                if st.button("What receipts are required for my claim?"):
+                    st.session_state.travel_starter = "What receipts are required to submit a travel claim on DD 1351-2?"
+                if st.button("How does split disbursement work?"):
+                    st.session_state.travel_starter = "How does split disbursement work for GTC on a DTS travel voucher?"
+
+        if "travel_starter" in st.session_state and st.session_state.travel_starter:
+            prompt = st.session_state.travel_starter
+            st.session_state.travel_starter = None
+            st.session_state.travel_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1500,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.travel_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.travel_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if prompt := st.chat_input("Ask any travel question...", key="travel_input"):
+            st.session_state.travel_messages.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            with st.chat_message("assistant"):
+                with st.spinner("Looking that up..."):
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1500,
+                        system=TRAVEL_SYSTEM_PROMPT,
+                        messages=st.session_state.travel_messages
+                    )
+                    answer = response.content[0].text
+                    st.markdown(answer)
+            st.session_state.travel_messages.append({"role": "assistant", "content": answer})
+            st.rerun()
+
+        if st.button("Clear Travel Chat", key="clear_travel"):
+            st.session_state.travel_messages = []
             st.rerun()
 
 with st.sidebar:
