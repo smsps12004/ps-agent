@@ -176,7 +176,7 @@ with tab1:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -191,7 +191,7 @@ with tab1:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -229,7 +229,7 @@ with tab1:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nsips_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -246,7 +246,7 @@ with tab1:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nsips_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -270,7 +270,7 @@ with tab2:
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Draft a {doc_type} with these details: {sailor_info}"}]
                 )
-                draft = next((b.text for b in response.content if b.type == "text"), "")
+                draft = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                 st.divider()
                 st.markdown("### Generated Document")
                 st.markdown(draft)
@@ -358,7 +358,7 @@ with tab3:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": user_msg}]
                     )
-                    bullets_out = next((b.text for b in response.content if b.type == "text"), "")
+                    bullets_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("#### Generated Bullet(s)")
                     st.text_area("Copy from here:", value=bullets_out, height=160, key="bullets_result")
@@ -522,7 +522,7 @@ End with a one-line SUMMARY STATEMENT suitable for the promotion recommendation 
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": full_eval_prompt}]
                     )
-                    full_eval_out = next((b.text for b in response.content if b.type == "text"), "")
+                    full_eval_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Evaluation")
                     st.markdown(full_eval_out)
@@ -625,7 +625,7 @@ with tab4:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {selres_doc} using the following information. Use proper military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nDetails: {selres_info}"}]
                     )
-                    doc_out = next((b.text for b in response.content if b.type == "text"), "")
+                    doc_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(doc_out)
@@ -667,7 +667,7 @@ with tab4:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {co_doc} for a Commanding Officer. Use proper Navy military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nSailor Information: {co_sailor}\n\nSituation/Details: {co_situation}"}]
                     )
-                    co_out = next((b.text for b in response.content if b.type == "text"), "")
+                    co_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(co_out)
@@ -712,7 +712,7 @@ with tab4:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.pay_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -729,7 +729,7 @@ with tab4:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.pay_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -761,7 +761,7 @@ with tab4:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {mob_doc} for a Navy Reserve unit. Use proper military format. Use bracketed placeholders for any missing required information. Include all required checklist items per current RESPERSMAN guidance.\n\nDetails: {mob_info}"}]
                     )
-                    mob_out = next((b.text for b in response.content if b.type == "text"), "")
+                    mob_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(mob_out)
@@ -788,7 +788,7 @@ with tab4:
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Provide complete administrative guidance for a NOSC Commanding Officer and PS shop on the following topic: {med_topic}\n\nInclude: applicable instructions/references, required forms, timelines, step-by-step procedures, CO responsibilities, and any common administrative errors to avoid. Administrative and procedural guidance only — no individual medical information."}]
                 )
-                med_out = next((b.text for b in response.content if b.type == "text"), "")
+                med_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                 st.divider()
                 st.markdown(f"### {med_topic}")
                 st.markdown(med_out)
@@ -870,7 +870,7 @@ Write in official Navy report format. Be direct and actionable. No filler."""
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": dash_prompt}]
                 )
-                report_out = next((b.text for b in response.content if b.type == "text"), "")
+                report_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                 st.markdown("### Command Readiness Report")
                 st.markdown(report_out)
                 st.download_button(
@@ -1090,7 +1090,7 @@ LES DATA:
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": decode_prompt}]
                 )
-                explanation = next((b.text for b in response.content if b.type == "text"), "")
+                explanation = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                 st.session_state.les_explanation = explanation
                 st.session_state.les_messages = [
                     {"role": "user", "content": decode_prompt},
@@ -1130,7 +1130,7 @@ LES DATA:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.les_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.les_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1366,7 +1366,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": tc_prompt}]
                     )
-                    tc_out = next((b.text for b in response.content if b.type == "text"), "")
+                    tc_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Travel Claim Guidance")
                     st.markdown(tc_out)
@@ -1411,7 +1411,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.dts_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1428,7 +1428,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.dts_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1471,7 +1471,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1488,7 +1488,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1543,7 +1543,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": pd_prompt}]
                     )
-                    pd_out = next((b.text for b in response.content if b.type == "text"), "")
+                    pd_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.divider()
                     st.markdown(f"### Per Diem — {pd_location}")
                     st.markdown(pd_out)
@@ -1589,7 +1589,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1606,7 +1606,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1655,7 +1655,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.travel_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1672,7 +1672,7 @@ Provide:
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
                     )
-                    answer = next((b.text for b in response.content if b.type == "text"), "")
+                    answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.travel_messages.append({"role": "assistant", "content": answer})
             st.rerun()
