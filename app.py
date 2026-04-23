@@ -82,7 +82,14 @@ st.divider()
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder", "✈️ Travel Assistant"])
 
-SYSTEM_PROMPT = "You are PS Agent, an expert U.S. Navy Personnel Specialist created by Strategic Sailor. Answer questions like a senior PS1. Always cite MILPERSMAN article numbers. Give practical action steps."
+SYSTEM_PROMPT = """You are PS Agent, an expert U.S. Navy Personnel Specialist created by Strategic Sailor. Answer every question like a senior PS1 briefing a junior sailor or PS shop. Follow these rules for every response:
+
+1. Always cite the applicable MILPERSMAN article number(s). If you use web search to find current guidance, cite the source.
+2. Structure your answers with clear headers (e.g., **Overview**, **Requirements**, **Step-by-Step Process**, **Common Errors**, **References**).
+3. Use numbered steps for any process or procedure.
+4. Be thorough — do not cut answers short. A sailor or PS shop should be able to act on your answer without needing to look anything else up.
+5. Flag any time-sensitive or frequently-updated policy (pay rates, advancement quotas, etc.) so the user knows to verify the latest figures.
+6. End each answer with a **References** section listing the MILPERSMAN articles, instructions, or NAVADMINs cited."""
 
 DRAFT_PROMPT = "You are PS Agent, an expert Navy PS. Draft official Navy personnel documents in proper military format. Use bracketed placeholders for missing info. List required enclosures at the end."
 
@@ -165,7 +172,7 @@ with tab1:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT,
+                        model="claude-opus-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.messages
                     )
@@ -180,7 +187,7 @@ with tab1:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT,
+                        model="claude-opus-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.messages
                     )
@@ -217,7 +224,7 @@ with tab1:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
@@ -234,7 +241,7 @@ with tab1:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
@@ -259,7 +266,7 @@ with tab2:
         else:
             with st.spinner("Drafting document..."):
                 response = client.messages.create(
-                    model="claude-opus-4-5", max_tokens=2048, system=DRAFT_PROMPT,
+                    model="claude-opus-4-5", max_tokens=4096, system=DRAFT_PROMPT,
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Draft a {doc_type} with these details: {sailor_info}"}]
                 )
@@ -510,7 +517,7 @@ End with a one-line SUMMARY STATEMENT suitable for the promotion recommendation 
 
                     response = client.messages.create(
                         model="claude-opus-4-5",
-                        max_tokens=2048,
+                        max_tokens=4096,
                         system=EVAL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": full_eval_prompt}]
@@ -613,7 +620,7 @@ with tab4:
             else:
                 with st.spinner("Drafting document..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=2048,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {selres_doc} using the following information. Use proper military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nDetails: {selres_info}"}]
@@ -655,7 +662,7 @@ with tab4:
             else:
                 with st.spinner("Drafting document..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=2048,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {co_doc} for a Commanding Officer. Use proper Navy military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nSailor Information: {co_sailor}\n\nSituation/Details: {co_situation}"}]
@@ -700,7 +707,7 @@ with tab4:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
@@ -717,7 +724,7 @@ with tab4:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
@@ -749,7 +756,7 @@ with tab4:
             else:
                 with st.spinner("Drafting document..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=2048,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {mob_doc} for a Navy Reserve unit. Use proper military format. Use bracketed placeholders for any missing required information. Include all required checklist items per current RESPERSMAN guidance.\n\nDetails: {mob_info}"}]
@@ -776,7 +783,7 @@ with tab4:
         if st.button("Get Administrative Guidance", type="primary", key="gen_med"):
             with st.spinner("Retrieving guidance..."):
                 response = client.messages.create(
-                    model="claude-opus-4-5", max_tokens=1500,
+                    model="claude-opus-4-5", max_tokens=4096,
                     system=RESERVE_MED_PROMPT,
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Provide complete administrative guidance for a NOSC Commanding Officer and PS shop on the following topic: {med_topic}\n\nInclude: applicable instructions/references, required forms, timelines, step-by-step procedures, CO responsibilities, and any common administrative errors to avoid. Administrative and procedural guidance only — no individual medical information."}]
@@ -858,7 +865,7 @@ Generate a Command Readiness Report with the following sections:
 Write in official Navy report format. Be direct and actionable. No filler."""
 
                 response = client.messages.create(
-                    model="claude-opus-4-5", max_tokens=2048,
+                    model="claude-opus-4-5", max_tokens=4096,
                     system=RESERVE_PS_PROMPT,
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": dash_prompt}]
@@ -1078,7 +1085,7 @@ LES DATA:
 {les_text}"""
                 response = client.messages.create(
                     model="claude-opus-4-5",
-                    max_tokens=3000,
+                    max_tokens=4096,
                     system=LES_SYSTEM_PROMPT,
                     tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": decode_prompt}]
@@ -1118,7 +1125,7 @@ LES DATA:
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
                         model="claude-opus-4-5",
-                        max_tokens=1024,
+                        max_tokens=4096,
                         system=LES_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.les_messages
@@ -1354,7 +1361,7 @@ Provide:
 5. Any errors or red flags to address before submission"""
 
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=2500,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": tc_prompt}]
@@ -1399,7 +1406,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
@@ -1416,7 +1423,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
@@ -1459,7 +1466,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
@@ -1476,7 +1483,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
@@ -1531,7 +1538,7 @@ Provide:
 6. Any flags or issues to be aware of (e.g., government quarters available, rate lookup needed)"""
 
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1500,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": pd_prompt}]
@@ -1577,7 +1584,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
@@ -1594,7 +1601,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1024,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
@@ -1643,7 +1650,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1500,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
@@ -1660,7 +1667,7 @@ Provide:
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
-                        model="claude-opus-4-5", max_tokens=1500,
+                        model="claude-opus-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
