@@ -82,7 +82,7 @@ st.divider()
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder", "✈️ Travel Assistant"])
 
-SYSTEM_PROMPT = "You are PS Agent, an expert U.S. Navy Personnel Specialist created by Strategic Sailor. Answer questions like a senior PS1. Always cite MILPERSMAN article numbers. Give practical action steps. End complex answers with: Verify current guidance in MILPERSMAN or with your chain of command."
+SYSTEM_PROMPT = "You are PS Agent, an expert U.S. Navy Personnel Specialist created by Strategic Sailor. Answer questions like a senior PS1. Always cite MILPERSMAN article numbers. Give practical action steps."
 
 DRAFT_PROMPT = "You are PS Agent, an expert Navy PS. Draft official Navy personnel documents in proper military format. Use bracketed placeholders for missing info. List required enclosures at the end."
 
@@ -94,7 +94,7 @@ NSIPS_QUICK_ISSUES = [
     "IDT not reflecting",
 ]
 
-RESERVE_PS_PROMPT = """You are a senior Navy PS1 with 15 years of experience specializing in Selected Reserve (SELRES) administration at a Navy Operational Support Center (NOSC). You know RESPERSMAN, BUPERSINST 1001.39F, the JTR, DODFMR Volume 7A, NSIPS operations, and reserve pay systems inside and out. Answer questions like a seasoned NOSC PS1. Always cite the applicable instruction or regulation. Give numbered, actionable steps. End complex answers with: Verify current guidance in RESPERSMAN or with your NOSC chain of command.
+RESERVE_PS_PROMPT = """You are a senior Navy PS1 with 15 years of experience specializing in Selected Reserve (SELRES) administration at a Navy Operational Support Center (NOSC). You know RESPERSMAN, BUPERSINST 1001.39F, the JTR, DODFMR Volume 7A, NSIPS operations, and reserve pay systems inside and out. Answer questions like a seasoned NOSC PS1. Always cite the applicable instruction or regulation. Give numbered, actionable steps.
 
 NSIPS DEEP KNOWLEDGE BASE:
 
@@ -164,8 +164,12 @@ with tab1:
                 st.markdown(prompt)
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
-                    response = client.messages.create(model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT, messages=st.session_state.messages)
-                    answer = response.content[0].text
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        messages=st.session_state.messages
+                    )
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -175,8 +179,12 @@ with tab1:
                 st.markdown(prompt)
             with st.chat_message("assistant"):
                 with st.spinner("Looking that up..."):
-                    response = client.messages.create(model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT, messages=st.session_state.messages)
-                    answer = response.content[0].text
+                    response = client.messages.create(
+                        model="claude-opus-4-5", max_tokens=1024, system=SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        messages=st.session_state.messages
+                    )
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -211,9 +219,10 @@ with tab1:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nsips_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -227,9 +236,10 @@ with tab1:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nsips_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nsips_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -248,8 +258,12 @@ with tab2:
             st.warning("Please enter sailor information first.")
         else:
             with st.spinner("Drafting document..."):
-                response = client.messages.create(model="claude-opus-4-5", max_tokens=2048, system=DRAFT_PROMPT, messages=[{"role": "user", "content": f"Draft a {doc_type} with these details: {sailor_info}"}])
-                draft = response.content[0].text
+                response = client.messages.create(
+                    model="claude-opus-4-5", max_tokens=2048, system=DRAFT_PROMPT,
+                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                    messages=[{"role": "user", "content": f"Draft a {doc_type} with these details: {sailor_info}"}]
+                )
+                draft = next((b.text for b in response.content if b.type == "text"), "")
                 st.divider()
                 st.markdown("### Generated Document")
                 st.markdown(draft)
@@ -334,9 +348,10 @@ with tab3:
                         model="claude-opus-4-5",
                         max_tokens=512,
                         system=EVAL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": user_msg}]
                     )
-                    bullets_out = response.content[0].text
+                    bullets_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("#### Generated Bullet(s)")
                     st.text_area("Copy from here:", value=bullets_out, height=160, key="bullets_result")
@@ -497,9 +512,10 @@ End with a one-line SUMMARY STATEMENT suitable for the promotion recommendation 
                         model="claude-opus-4-5",
                         max_tokens=2048,
                         system=EVAL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": full_eval_prompt}]
                     )
-                    full_eval_out = response.content[0].text
+                    full_eval_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Evaluation")
                     st.markdown(full_eval_out)
@@ -599,9 +615,10 @@ with tab4:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=2048,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {selres_doc} using the following information. Use proper military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nDetails: {selres_info}"}]
                     )
-                    doc_out = response.content[0].text
+                    doc_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(doc_out)
@@ -640,9 +657,10 @@ with tab4:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=2048,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {co_doc} for a Commanding Officer. Use proper Navy military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nSailor Information: {co_sailor}\n\nSituation/Details: {co_situation}"}]
                     )
-                    co_out = response.content[0].text
+                    co_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(co_out)
@@ -684,9 +702,10 @@ with tab4:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.pay_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -700,9 +719,10 @@ with tab4:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.pay_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.pay_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -731,9 +751,10 @@ with tab4:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=2048,
                         system=RESERVE_PS_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {mob_doc} for a Navy Reserve unit. Use proper military format. Use bracketed placeholders for any missing required information. Include all required checklist items per current RESPERSMAN guidance.\n\nDetails: {mob_info}"}]
                     )
-                    mob_out = response.content[0].text
+                    mob_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Generated Document")
                     st.markdown(mob_out)
@@ -757,9 +778,10 @@ with tab4:
                 response = client.messages.create(
                     model="claude-opus-4-5", max_tokens=1500,
                     system=RESERVE_MED_PROMPT,
+                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Provide complete administrative guidance for a NOSC Commanding Officer and PS shop on the following topic: {med_topic}\n\nInclude: applicable instructions/references, required forms, timelines, step-by-step procedures, CO responsibilities, and any common administrative errors to avoid. Administrative and procedural guidance only — no individual medical information."}]
                 )
-                med_out = response.content[0].text
+                med_out = next((b.text for b in response.content if b.type == "text"), "")
                 st.divider()
                 st.markdown(f"### {med_topic}")
                 st.markdown(med_out)
@@ -838,9 +860,10 @@ Write in official Navy report format. Be direct and actionable. No filler."""
                 response = client.messages.create(
                     model="claude-opus-4-5", max_tokens=2048,
                     system=RESERVE_PS_PROMPT,
+                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": dash_prompt}]
                 )
-                report_out = response.content[0].text
+                report_out = next((b.text for b in response.content if b.type == "text"), "")
                 st.markdown("### Command Readiness Report")
                 st.markdown(report_out)
                 st.download_button(
@@ -1057,9 +1080,10 @@ LES DATA:
                     model="claude-opus-4-5",
                     max_tokens=3000,
                     system=LES_SYSTEM_PROMPT,
+                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
                     messages=[{"role": "user", "content": decode_prompt}]
                 )
-                explanation = response.content[0].text
+                explanation = next((b.text for b in response.content if b.type == "text"), "")
                 st.session_state.les_explanation = explanation
                 st.session_state.les_messages = [
                     {"role": "user", "content": decode_prompt},
@@ -1096,9 +1120,10 @@ LES DATA:
                         model="claude-opus-4-5",
                         max_tokens=1024,
                         system=LES_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.les_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.les_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1225,7 +1250,7 @@ NSIPS/MMPA TRAVEL IMPACT:
 - DLA is processed through DFAS after NSIPS reflects PCS gain
 - MMPA corrections for travel overpayments: submit DD 2131 to DFAS
 
-Always end with: Verify current rates and policy at JTR (travel.dod.mil) or with your servicing travel office."""
+Always cite the applicable JTR chapter and verify rates at GSA.gov (CONUS) or PDTATAC (OCONUS)."""
 
 TRAVEL_SECTIONS = [
     "1 — Travel Claims",
@@ -1331,9 +1356,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=2500,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": tc_prompt}]
                     )
-                    tc_out = response.content[0].text
+                    tc_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown("### Travel Claim Guidance")
                     st.markdown(tc_out)
@@ -1375,9 +1401,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.dts_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1391,9 +1418,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.dts_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.dts_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1433,9 +1461,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1449,9 +1478,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.nrows_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.nrows_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1503,9 +1533,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1500,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=[{"role": "user", "content": pd_prompt}]
                     )
-                    pd_out = response.content[0].text
+                    pd_out = next((b.text for b in response.content if b.type == "text"), "")
                     st.divider()
                     st.markdown(f"### Per Diem — {pd_location}")
                     st.markdown(pd_out)
@@ -1548,9 +1579,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1564,9 +1596,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1024,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.mmpa_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.mmpa_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1612,9 +1645,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1500,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.travel_messages.append({"role": "assistant", "content": answer})
             st.rerun()
@@ -1628,9 +1662,10 @@ Provide:
                     response = client.messages.create(
                         model="claude-opus-4-5", max_tokens=1500,
                         system=TRAVEL_SYSTEM_PROMPT,
+                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
                         messages=st.session_state.travel_messages
                     )
-                    answer = response.content[0].text
+                    answer = next((b.text for b in response.content if b.type == "text"), "")
                     st.markdown(answer)
             st.session_state.travel_messages.append({"role": "assistant", "content": answer})
             st.rerun()
