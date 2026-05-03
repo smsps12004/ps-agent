@@ -199,7 +199,7 @@ with tab1:
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -214,7 +214,7 @@ with tab1:
                 with st.spinner("Looking that up..."):
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -252,7 +252,7 @@ with tab1:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.nsips_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -269,7 +269,7 @@ with tab1:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.nsips_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -293,7 +293,7 @@ with tab2:
             with st.spinner("Drafting document..."):
                 response = client.messages.create(
                     model="claude-sonnet-4-5", max_tokens=4096, system=DRAFT_PROMPT,
-                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                    tools=[{"type": "web_search_20260209", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Draft a {doc_type} with these details: {sailor_info}"}]
                 )
                 draft = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -381,7 +381,7 @@ with tab3:
                         model="claude-sonnet-4-5",
                         max_tokens=512,
                         system=EVAL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": user_msg}]
                     )
                     bullets_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -545,7 +545,7 @@ End with a one-line SUMMARY STATEMENT suitable for the promotion recommendation 
                         model="claude-sonnet-4-5",
                         max_tokens=4096,
                         system=EVAL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": full_eval_prompt}]
                     )
                     full_eval_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -648,7 +648,7 @@ with tab4:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {selres_doc} using the following information. Use proper military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nDetails: {selres_info}"}]
                     )
                     doc_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -690,7 +690,7 @@ with tab4:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {co_doc} for a Commanding Officer. Use proper Navy military format. Use bracketed placeholders for any missing required information. List required enclosures at the end.\n\nSailor Information: {co_sailor}\n\nSituation/Details: {co_situation}"}]
                     )
                     co_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -735,7 +735,7 @@ with tab4:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.pay_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -752,7 +752,7 @@ with tab4:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.pay_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -784,7 +784,7 @@ with tab4:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": f"Draft a {mob_doc} for a Navy Reserve unit. Use proper military format. Use bracketed placeholders for any missing required information. Include all required checklist items per current RESPERSMAN guidance.\n\nDetails: {mob_info}"}]
                     )
                     mob_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -811,7 +811,7 @@ with tab4:
                 response = client.messages.create(
                     model="claude-sonnet-4-5", max_tokens=4096,
                     system=RESERVE_MED_PROMPT,
-                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                    tools=[{"type": "web_search_20260209", "name": "web_search"}],
                     messages=[{"role": "user", "content": f"Provide complete administrative guidance for a NOSC Commanding Officer and PS shop on the following topic: {med_topic}\n\nInclude: applicable instructions/references, required forms, timelines, step-by-step procedures, CO responsibilities, and any common administrative errors to avoid. Administrative and procedural guidance only — no individual medical information."}]
                 )
                 med_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -893,7 +893,7 @@ Write in official Navy report format. Be direct and actionable. No filler."""
                 response = client.messages.create(
                     model="claude-sonnet-4-5", max_tokens=4096,
                     system=RESERVE_PS_PROMPT,
-                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                    tools=[{"type": "web_search_20260209", "name": "web_search"}],
                     messages=[{"role": "user", "content": dash_prompt}]
                 )
                 report_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1113,7 +1113,7 @@ LES DATA:
                     model="claude-sonnet-4-5",
                     max_tokens=4096,
                     system=LES_SYSTEM_PROMPT,
-                    tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                    tools=[{"type": "web_search_20260209", "name": "web_search"}],
                     messages=[{"role": "user", "content": decode_prompt}]
                 )
                 explanation = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1153,7 +1153,7 @@ LES DATA:
                         model="claude-sonnet-4-5",
                         max_tokens=4096,
                         system=LES_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.les_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1389,7 +1389,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": tc_prompt}]
                     )
                     tc_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1434,7 +1434,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.dts_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1451,7 +1451,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.dts_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1494,7 +1494,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.nrows_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1511,7 +1511,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.nrows_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1566,7 +1566,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=[{"role": "user", "content": pd_prompt}]
                     )
                     pd_out = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1612,7 +1612,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.mmpa_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1629,7 +1629,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.mmpa_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1678,7 +1678,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.travel_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
@@ -1695,7 +1695,7 @@ Provide:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
-                        tools=[{"type": "web_search_20250305", "name": "web_search"}],
+                        tools=[{"type": "web_search_20260209", "name": "web_search"}],
                         messages=clean_messages_for_api(st.session_state.travel_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
