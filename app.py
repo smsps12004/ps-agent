@@ -98,6 +98,21 @@ RESPONSE RULES — FOLLOW EVERY TIME:
 - If web search returns current policy or a NAVADMIN, incorporate that information into the answer
 - Never tell the user to "check with their chain of command" as a substitute for a real answer — give the real answer first, then note if local command policy may vary"""
 
+def clean_messages_for_api(messages):
+    cleaned = []
+    for msg in messages:
+        if msg["role"] in ("user", "assistant"):
+            if isinstance(msg["content"], str):
+                cleaned.append(msg)
+            elif isinstance(msg["content"], list):
+                text_blocks = [
+                    block for block in msg["content"]
+                    if isinstance(block, dict) and block.get("type") == "text"
+                ]
+                if text_blocks:
+                    cleaned.append({"role": msg["role"], "content": text_blocks})
+    return cleaned
+
 DRAFT_PROMPT = "You are PS Agent, an expert Navy PS. Draft official Navy personnel documents in proper military format. Use bracketed placeholders for missing info. List required enclosures at the end."
 
 NSIPS_QUICK_ISSUES = [
@@ -181,7 +196,7 @@ with tab1:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.messages
+                        messages=clean_messages_for_api(st.session_state.messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -196,7 +211,7 @@ with tab1:
                     response = client.messages.create(
                         model="claude-sonnet-4-5", max_tokens=4096, system=SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.messages
+                        messages=clean_messages_for_api(st.session_state.messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
