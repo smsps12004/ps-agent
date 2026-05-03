@@ -101,16 +101,20 @@ RESPONSE RULES — FOLLOW EVERY TIME:
 def clean_messages_for_api(messages):
     cleaned = []
     for msg in messages:
-        if msg["role"] in ("user", "assistant"):
-            if isinstance(msg["content"], str):
-                cleaned.append(msg)
-            elif isinstance(msg["content"], list):
-                text_blocks = [
-                    block for block in msg["content"]
-                    if isinstance(block, dict) and block.get("type") == "text"
-                ]
-                if text_blocks:
-                    cleaned.append({"role": msg["role"], "content": text_blocks})
+        if msg["role"] not in ("user", "assistant"):
+            continue
+        content = msg["content"]
+        if isinstance(content, str):
+            if content.strip():
+                cleaned.append({"role": msg["role"], "content": content})
+        elif isinstance(content, list):
+            text_blocks = [
+                block for block in content
+                if isinstance(block, dict) and block.get("type") == "text"
+                and block.get("text", "").strip()
+            ]
+            if text_blocks:
+                cleaned.append({"role": msg["role"], "content": text_blocks})
     return cleaned
 
 DRAFT_PROMPT = "You are PS Agent, an expert Navy PS. Draft official Navy personnel documents in proper military format. Use bracketed placeholders for missing info. List required enclosures at the end."
@@ -249,7 +253,7 @@ with tab1:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.nsips_messages
+                        messages=clean_messages_for_api(st.session_state.nsips_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -266,7 +270,7 @@ with tab1:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.nsips_messages
+                        messages=clean_messages_for_api(st.session_state.nsips_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -732,7 +736,7 @@ with tab4:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.pay_messages
+                        messages=clean_messages_for_api(st.session_state.pay_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -749,7 +753,7 @@ with tab4:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=RESERVE_PS_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.pay_messages
+                        messages=clean_messages_for_api(st.session_state.pay_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1150,7 +1154,7 @@ LES DATA:
                         max_tokens=4096,
                         system=LES_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.les_messages
+                        messages=clean_messages_for_api(st.session_state.les_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1431,7 +1435,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.dts_messages
+                        messages=clean_messages_for_api(st.session_state.dts_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1448,7 +1452,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.dts_messages
+                        messages=clean_messages_for_api(st.session_state.dts_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1491,7 +1495,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.nrows_messages
+                        messages=clean_messages_for_api(st.session_state.nrows_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1508,7 +1512,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.nrows_messages
+                        messages=clean_messages_for_api(st.session_state.nrows_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1609,7 +1613,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.mmpa_messages
+                        messages=clean_messages_for_api(st.session_state.mmpa_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1626,7 +1630,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.mmpa_messages
+                        messages=clean_messages_for_api(st.session_state.mmpa_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1675,7 +1679,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.travel_messages
+                        messages=clean_messages_for_api(st.session_state.travel_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
@@ -1692,7 +1696,7 @@ Provide:
                         model="claude-sonnet-4-5", max_tokens=4096,
                         system=TRAVEL_SYSTEM_PROMPT,
                         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-                        messages=st.session_state.travel_messages
+                        messages=clean_messages_for_api(st.session_state.travel_messages)
                     )
                     answer = next((b.text for b in reversed(response.content) if b.type == "text"), "")
                     st.markdown(answer)
