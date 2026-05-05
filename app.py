@@ -27,35 +27,168 @@ def check_access(code):
         return False, "expired"
     return True, ACCESS_CODES[code][0]
 
-st.set_page_config(page_title="PS Agent", page_icon="⚓", layout="wide")
+st.set_page_config(
+    page_title="PS Agent | Strategic Sailor",
+    page_icon="⚓",
+    layout="wide"
+)
 
 st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-[data-testid="stAppViewContainer"] { background: linear-gradient(135deg, #0a0a1a 0%, #0d1b2a 50%, #1a0500 100%); }
-[data-testid="stSidebar"] { background: linear-gradient(180deg, #0d1b2a 0%, #1a0500 100%); border-right: 2px solid #c9a84c; }
-[data-testid="stSidebar"] p, [data-testid="stSidebar"] h1 { color: #c9a84c !important; }
-h1 { color: #c9a84c !important; font-family: Georgia, serif !important; letter-spacing: 2px; }
-[data-testid="stCaptionContainer"] p { color: #a0b4c8 !important; font-style: italic; }
-[data-testid="stTabs"] button { color: #c9a84c !important; font-weight: bold; font-size: 16px; }
-[data-testid="stTabs"] button[aria-selected="true"] { color: #ffffff !important; border-bottom: 2px solid #c9a84c !important; }
-[data-testid="stButton"] button { background: linear-gradient(135deg, #8b0000, #c9a84c) !important; color: white !important; border: none !important; border-radius: 8px !important; font-weight: bold !important; }
-[data-testid="stChatInput"] { border: 1px solid #c9a84c !important; border-radius: 25px !important; }
-[data-testid="stTextArea"] textarea { background: rgba(13,27,42,0.9) !important; border: 1px solid #c9a84c !important; color: white !important; border-radius: 8px !important; }
-hr { border-color: #c9a84c !important; }
-p, li { color: #d0d8e4 !important; }
-h2, h3 { color: #c9a84c !important; }
-strong { color: #c9a84c !important; }
+/* ── Base ── */
+html, body, [class*="css"] {
+    background-color: #0a0f1e !important;
+    color: #e8eaf0 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* ── Background grid texture ── */
+.stApp::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,215,0,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,215,0,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Sidebar ── */
+[data-testid="stSidebar"] {
+    background: #060c1a !important;
+    border-right: 1px solid rgba(255,215,0,0.1) !important;
+}
+
+/* ── Tabs ── */
+.stTabs [data-baseweb="tab-list"] {
+    background: rgba(255,255,255,0.03) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 12px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+}
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    color: rgba(255,255,255,0.4) !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 10px 18px !important;
+    border: none !important;
+    transition: all 0.2s !important;
+}
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #003366, #004080) !important;
+    color: #FFD700 !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 12px rgba(0,51,102,0.5) !important;
+}
+.stTabs [data-baseweb="tab-highlight"] { display: none !important; }
+
+/* ── Buttons ── */
+.stButton > button {
+    background: linear-gradient(135deg, #003366, #005cbf) !important;
+    color: #FFD700 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    padding: 10px 24px !important;
+    box-shadow: 0 2px 14px rgba(0,92,191,0.4) !important;
+    transition: all 0.2s !important;
+}
+.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 22px rgba(0,92,191,0.6) !important;
+}
+
+/* ── Text inputs ── */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+    color: #e8eaf0 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: rgba(255,215,0,0.4) !important;
+    box-shadow: 0 0 0 3px rgba(255,215,0,0.07) !important;
+}
+
+/* ── Chat bubbles ── */
+[data-testid="stChatMessageContent"] {
+    background: rgba(0,51,102,0.3) !important;
+    border: 1px solid rgba(0,77,153,0.25) !important;
+    border-radius: 14px !important;
+    color: #dde4f0 !important;
+}
+
+/* ── Selectboxes / dropdowns ── */
+.stSelectbox > div > div {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 10px !important;
+    color: #e8eaf0 !important;
+}
+
+/* ── Metric cards ── */
+[data-testid="stMetric"] {
+    background: rgba(0,51,102,0.25) !important;
+    border: 1px solid rgba(255,215,0,0.12) !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+}
+
+/* ── Expanders ── */
+.streamlit-expanderHeader {
+    background: rgba(0,51,102,0.2) !important;
+    border: 1px solid rgba(255,215,0,0.1) !important;
+    border-radius: 10px !important;
+    color: #FFD700 !important;
+    font-weight: 600 !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0f1e; }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,0.4); }
+
+/* ── Pulse animation for ONLINE indicator ── */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
 </style>
 """, unsafe_allow_html=True)
+
+PS_AGENT_HEADER = """
+<div style="display:flex; align-items:center; gap:16px; padding-bottom:20px; border-bottom:1px solid rgba(255,215,0,0.12); margin-bottom:24px;">
+  <div style="width:52px; height:52px; background:linear-gradient(135deg,#003366,#0a1a3e); border:1px solid rgba(255,215,0,0.35); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:26px; box-shadow:0 0 20px rgba(255,215,0,0.12);">⚓</div>
+  <div>
+    <div style="font-family:'Rajdhani',sans-serif; font-size:30px; font-weight:700; letter-spacing:3px; text-transform:uppercase; background:linear-gradient(135deg,#fff 0%,#FFD700 65%); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">PS AGENT</div>
+    <div style="font-size:11px; color:rgba(255,215,0,0.55); letter-spacing:3px; text-transform:uppercase;">Strategic Sailor · Personnel AI</div>
+  </div>
+  <div style="margin-left:auto; display:flex; align-items:center; gap:8px; font-size:11px; color:#4ade80; letter-spacing:1px;">
+    <div style="width:8px; height:8px; background:#4ade80; border-radius:50%; box-shadow:0 0 8px #4ade80; animation:pulse 2s infinite;"></div>
+    ONLINE
+  </div>
+</div>
+"""
 
 if "access_granted" not in st.session_state:
     st.session_state.access_granted = False
     st.session_state.access_type = None
 
 if not st.session_state.access_granted:
-    st.title("⚓ PS Agent")
-    st.caption("by Strategic Sailor — Your AI Personnel Specialist")
-    st.divider()
+    st.markdown(PS_AGENT_HEADER, unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1,2,1])
     with col2:
         st.markdown("### 🔐 Enter Access Code")
@@ -76,9 +209,7 @@ if not st.session_state.access_granted:
     st.stop()
 
 access_label = {"beta": "Beta Tester", "individual": "Sailor", "shop": "PS Shop"}
-st.title("⚓ PS Agent")
-st.caption("by Strategic Sailor — Your AI Personnel Specialist")
-st.divider()
+st.markdown(PS_AGENT_HEADER, unsafe_allow_html=True)
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder", "✈️ Travel Assistant"])
 
