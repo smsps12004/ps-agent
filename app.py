@@ -1,7 +1,7 @@
 import streamlit as st
 from anthropic import Anthropic
 from datetime import datetime
-
+from pathlib import Path
 client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
 # ── ACCESS CODES ──────────────────────────────────────────────────────────────
@@ -47,6 +47,8 @@ def check_access(code):
 DAILY_BUDGET_USD  = 5.00
 PRICE_IN_PER_TOK  = 3.00 / 1_000_000    # claude-sonnet-4-6 input
 PRICE_OUT_PER_TOK = 15.00 / 1_000_000   # claude-sonnet-4-6 output
+PRICE_CACHE_WRITE = 3.75 / 1_000_000    # cache write = 1.25x input
+PRICE_CACHE_READ  = 0.30 / 1_000_000    # cache read  = 0.10x input
 PRICE_PER_SEARCH  = 0.01                # web_search server tool
 EST_CALL_COST     = 0.15                # reserved before a call; a failed call still costs
 
@@ -68,6 +70,9 @@ def _settle_cost(reserved, response):
         u = response.usage
         cost  = (getattr(u, "input_tokens", 0) or 0) * PRICE_IN_PER_TOK
         cost += (getattr(u, "output_tokens", 0) or 0) * PRICE_OUT_PER_TOK
+        # Cached index tokens are billed separately and much cheaper.
+        cost += (getattr(u, "cache_creation_input_tokens", 0) or 0) * PRICE_CACHE_WRITE
+        cost += (getattr(u, "cache_read_input_tokens", 0) or 0) * PRICE_CACHE_READ
         tool_use = getattr(u, "server_tool_use", None)
         if tool_use is not None:
             cost += (getattr(tool_use, "web_search_requests", 0) or 0) * PRICE_PER_SEARCH
@@ -86,12 +91,85 @@ def _check_budget():
         )
         st.stop()
 
+# ── MILPERSMAN ARTICLE INDEX ──────────────────────────────────────────────────
+# The real article list, parsed from the official Whole MILPERSMAN PDF: 793 active
+# articles with titles and cognizant offices, plus 256 that are CANCELLED.
+#
+# Why this exists: PS Agent was inventing citations. Not fabricating numbers from
+# nothing — recalling numbers that were correct years ago and have since been
+# cancelled (it cited 1070-190 for a Page 13; the real article is 1070-320).
+# Telling it to "verify by searching" does not catch that, because cancelled
+# articles still appear all over the web in old PDFs and study sites, so a search
+# CONFIRMS the dead citation. Giving it the actual list is the only real fix.
+INDEX_PATH = Path(__file__).parent / "milpersman_articles.txt"
+
+@st.cache_data
+def _load_milpersman_index():
+    try:
+        return INDEX_PATH.read_text(encoding="utf-8")
+    except Exception:
+        return ""   # degrade to previous behaviour rather than crash the app
+
+MILPERSMAN_INDEX = _load_milpersman_index()
+
+INDEX_PREAMBLE = """AUTHORITATIVE MILPERSMAN ARTICLE INDEX
+
+Below is the complete article index parsed directly from the official Whole
+MILPERSMAN. It is the ground truth. Use it as follows, and treat it as
+outranking your own recollection in every case:
+
+1. Before citing ANY MILPERSMAN article, find it in this index. If the number
+   is not listed here, do not cite it — say the reference could not be
+   confirmed and describe what it covers in plain terms.
+2. The TITLE in this index is the article's real subject. If your recollection
+   of what an article covers disagrees with the title here, THIS INDEX IS
+   RIGHT and you are wrong. Cite the article whose title actually matches the
+   topic, not the number you remember.
+3. Articles in the CANCELLED OR SUSPENDED list are DEAD. Never cite one as
+   current authority, no matter how confident you feel or what a web search
+   appears to confirm. If the answer seems to live in a cancelled article,
+   find the current article covering that subject in the active list instead.
+4. The third field is the cognizant office. Use it rather than guessing which
+   PERS code owns a topic, and do not swap Active Duty and Reserve offices.
+5. Because you have this index, you do NOT need to web-search to confirm that
+   an article number or title exists. Reserve searching for current policy,
+   NAVADMINs, rates, and dollar figures, which this index does not cover.
+
+"""
+
+
+def _cached_system(system):
+    """Prepend the MILPERSMAN index to the system prompt as a cacheable block.
+
+    The index goes FIRST and is byte-identical on every call, so it forms a
+    stable cache prefix that all 26 call sites in this app share. Anthropic
+    charges ~10% for a cache read versus full price for fresh input, so the
+    index is cheap after the first call in any 5-minute window. It also
+    removes most citation web searches, which were billed per search AND
+    dumped thousands of tokens of results back into the input.
+    """
+    if not MILPERSMAN_INDEX:
+        return system
+    index_block = {
+        "type": "text",
+        "text": INDEX_PREAMBLE + MILPERSMAN_INDEX,
+        "cache_control": {"type": "ephemeral"},
+    }
+    if isinstance(system, str):
+        return [index_block, {"type": "text", "text": system}]
+    if isinstance(system, list):
+        return [index_block] + system
+    return system
+
+
 class _GuardedMessages:
     def __init__(self, inner):
         self._inner = inner
 
     def create(self, **kwargs):
         _check_budget()
+        if "system" in kwargs:
+            kwargs["system"] = _cached_system(kwargs["system"])
         b = _budget_today()
         # Reserve BEFORE the call. A call that times out still costs money —
         # that lesson cost real credits, so the reserve is charged either way.

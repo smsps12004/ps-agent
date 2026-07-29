@@ -1,0 +1,827 @@
+# MILPERSMAN ARTICLE INDEX — parsed from the official Whole MILPERSMAN PDF.
+# Format: ARTICLE|TITLE|COGNIZANT OFFICE
+# 793 active articles.
+
+1000-020|Pay and Personnel Record Maintenance Responsibilities|PERS-2
+1000-021|Command Pay and Personnel Administrator (CPPA) Program|PERS-2
+1000-025|Personnel Transaction Timeliness|PERS-22
+1000-030|Active Duty Service Date (ADSD) for Enlisted Personnel|MNCC
+1000-060|Military Personnel Social Security Number (SSN)|PERS-331
+1000-090|Race Entries on Forms, Records, and Reports|OPNAV (N134E)
+1000-100|Home of Record and Place From Which Ordered to Active Duty|PERS-312
+1000-110|Name and Address Lists of Members of the Navy and Navy Reserve|BUPERS-00J
+1000-120|Correction of Date of Birth|PERS-331
+1000-130|Name Change of Service Member|MNCC
+1000-140|Mailing Address of Members on Inactive Duty|PERS-912
+1000-150|Board for Correction of Naval Records (BCNR)|PERS-31C
+1000-160|Naval Discharge Review Board (NDRB)|NDRB
+1000-170|Sailing Diary|MNCC
+1001-020|Training and Administration of the Navy Reserve Officer Program|PERS-92
+1001-021|Full-Time Support (FTS) of the Navy Reserve Enlisted Program|BUPERS-352
+1001-022|Permanent Professional Recruiter (PPR) Designator of the Navy Reserve|PERS-832
+1001-030|Civilian Employment of Inactive Duty Navy Reservists|PERS-91
+1001-040|Foreign Travel and Residence of Inactive Duty Navy Reservists|PERS-91
+1001-060|Assignment of Enlisted Naval Reservists to Active Duty|PERS-80C
+1001-070|Inactive Duty Reservists Who are Students or Graduates of Medical|PERS-491
+1001-080|Minimum Required Service of Naval Reserve Officers with an Initial 3 to 6|OPNAV (N13)
+1001-090|Minimum Required Active Service of Reserve Officers|OPNAV (N13)
+1001-100|Navy Reserve Status and Categories|PERS-91
+1001-125|Requirements for Transfer from Selected Reserve or Individual Ready|PERS-93
+1001-135|Screening Requirements for Individual Ready Reserve-Active Status Pool|PERS-93
+1001-145|Requirements for Transfer from Active Component to the Individual Ready|PERS-93
+1001-150|Navy Reserve Participation Requirements|PERS-91
+1001-170|Reserve Family Member Identification Cards and Defense Enrollment|PERS-9
+1001-260|Targeted Re-entry Program|PERS-97
+1050-010|Leave Policy|OPNAV (N130)
+1050-050|Hospitalization While on Leave|OPNAV (N130)
+1050-070|Special Leave Accrual|OPNAV (N130)
+1050-080|Computation of Leave - Overview|OPNAV (N13)
+1050-081|Computation of Leave - General Instructions|OPNAV (N13)
+1050-082|Computation of Leave - Examples of Charging Leave, Proceed, and Travel|OPNAV (N13)
+1050-083|Computation of Leave - Example of Charging Leave During PCS with TDY|OPNAV (N13)
+1050-084|Computation of Leave - Examples of Charging Leave When No Travel and|OPNAV (N13)
+1050-085|Computation of Leave - Example of Charging Leave When Unaccounted|OPNAV (N13)
+1050-090|Leave: Day of Departure/Return|OPNAV (N130)
+1050-100|Leave: Check-in/Check-out Procedures|MNCC
+1050-110|Absences Over Leave or Liberty (AOL)|OPNAV (N13)
+1050-120|Separation Leave|OPNAV (N13)
+1050-130|Emergency Leave|OPNAV (N13)
+1050-140|Computation of Emergency Leave Involving Government-Funded Travel|OPNAV (N13)
+1050-150|Leave En Route in Execution of Orders|OPNAV (N13)
+1050-160|Leave During Temporary Duty or Temporary Additional Duty|OPNAV (N13)
+1050-170|Leave in Conjunction with Temporary Additional Duty|OPNAV (N13)
+1050-180|Convalescent Leave|OPNAV (N130)
+1050-190|Sick in Quarters (SIQ) Status|OPNAV (N13)
+1050-200|Rest and Recuperation on Leave Program|OPNAV (N130)
+1050-210|Environmental and Morale Leave (EML)|OPNAV (N13)
+1050-220|Recruiting Assistance Leave Program|OPNAV (N130)
+1050-230|Leave for Midshipmen|OPNAV (N13)
+1050-240|Leave for Naval Academy Midshipmen Candidates Who Are Graduates of|OPNAV (N13)
+1050-250|Foreign Leave Travel|PERS-451H
+1050-260|Leave/Emergency Leave in the Republic of the Philippines|OPNAV (N13)
+1050-270|Administrative Absences|OPNAV (N130)
+1050-271|Post-Deployment Mobilization Respite Absence for Active Duty Personnel|OPNAV (N130)
+1050-272|Post-Deployment/Mobilization Respite Absence for Mobilized Reserve|OPNAV (N130)
+1050-280|Definition of Liberty|OPNAV (N13)
+1050-290|Policy Concerning Liberty|OPNAV (N13)
+1050-310|Appellate Leave|NAMALA
+1050-320|Request (Voluntary) Appellate Leave|NAMALA
+1050-340|Mandatory (Involuntary) Appellate Leave|NAMALA
+1050-350|Appellate Review|NAMALA
+1050-360|Procedures for Recalling a Member from Appellate Leave|NAMALA
+1050-400|Accrued Leave Creditable Upon Retirement|PERS-835
+1050-410|Consecutive Overseas Tours (COT) and In-Place Consecutive Overseas|OPNAV (N130)
+1050-415|Parental Leave Program|OPNAV (N130)
+1050-440|Administrative Absence to Obtain a Legal Marriage|OPNAV (N130C)
+1070-020|Officer Official Military Personnel File (OMPF)|PERS-313
+1070-030|Creating the Officer Permanent Personnel Record|PERS-313
+1070-080|Enlisted Official Military Personnel File (OMPF)|PERS-313
+1070-090|Creating the Enlisted Permanent Personnel Record|PERS-313
+1070-111|Submission of Navy Standard Integrated Personnel System (NSIPS) and|PERS-313
+1070-150|Requests for Records Included in the Official Military Personnel File (OMPF)|PERS-313
+1070-181|Officer Photographs|PERS-313
+1070-230|DD 4, Enlistment/Reenlistment Document - Armed Forces of the United|NAVCRUITCOM
+1070-240|NAVPERS 1070/601, Immediate Reenlistment Contract|PERS-313C
+1070-250|NAVPERS 1070/621, Agreement to Extend Enlistment|PERS-313C
+1070-260|NAVPERS 1070/622, Agreement to Recall or Extend Active Duty|PERS-313C
+1070-270|Dependency Application|PERS-222
+1070-271|Record of Emergency Data|PERS-00C
+1070-300|NAVPERS 1070/606 Record of Unauthorized Absence|MNCC
+1070-310|NAVPERS 1070/607 Court Memorandum|MNCC
+1070-320|Administrative Remarks|PERS-313
+1070-330|Record of Discharge from the Navy Reserve (Inactive)|PERS-913
+1070-340|DD 214, Certificate of Release or Discharge from Active Duty|PERS-312
+1070-360|NAVPERS 1070/887 Sex Offense Accountability Record|OPNAV (N172)
+1080-010|NAVPERS 18068F, Manual of Navy Enlisted Manpower and|NAVMAC
+1080-020|NAVPERS 15839I, Manual of Navy Officer Manpower and|NAVMAC
+1100-011|First Enlistments and the Military Service Obligation|OPNAV (N131)
+1100-020|Appointment in the Nurse Corps of the Navy on Active Duty|PERS-4415
+1100-030|Procedures for Effecting Appointments and Delivering Original Commissions|NAVCRUITCOM
+1100-050|Eligibility Requirements for Membership in the Ready Reserve|PERS-491
+1100-060|Submission of Application of Voluntary Termination of Temporary|PERS-83
+1131-040|Appointment of Officers in the Navy Reserve, Prior Service|PERS-911
+1131-050|Medical Enlisted Commissioning Program|PERS-4415
+1133-020|Navy Reserve Enlistment Programs - Policy|BUPERS-352
+1133-060|Prior Service (PRISE) III Program|OPNAV (N13)
+1133-061|Prior Service Re-enlistment Eligibility - Reserve (PRISE-R) Program|OPNAV (N13)
+1133-062|Active Component and Full Time Support (FTS) to Selected Reserve|BUPERS-32
+1133-070|Fulfillment of the 8-year Obligation|PERS-832
+1133-090|New Accession Training (NAT) Program|OPNAV (N13)
+1160-010|Age Limitation of Enlisted Personnel for Continuation on Active Duty|BUPERS-32
+1160-020|Enlistments and Reenlistment Ceremony and Recognition Items|BUPERS-312
+1160-030|Enlistments and Reenlistments Under Continuous Service Conditions|BUPERS-3
+1160-031|Required Counseling Upon Enlistment and Reenlistment|BUPERS-328
+1160-040|Extension of Enlistments|BUPERS-328
+1160-050|Voluntary or Involuntary Extension of Enlisted Personnel Beyond|BUPERS-312
+1160-060|Agreements of Enlisted Naval Reservists, Fleet Reservists, and|PERS-80C
+1160-070|Reenlistment/Extension of Enlistment in the Individual Ready Reserve (IRR)|PERS-4933
+1160-100|Selective Training and Reenlistment (STAR) Program|BUPERS-328
+1160-120|Active Component and Training and Administration of the Reserve High Year|BUPERS-328
+1160-135|High Year Tenure and Length of Service for Selected Reserve, Individual|BUPERS-352
+1160-140|Career Waypoints|BUPERS-313
+1200-010|Submarine Patrol Insignia Qualifications|OPNAV (N978)
+1200-020|Deep Submergence Insignia Qualifications|OPNAV (N978)
+1200-030|Small Craft Insignia|OPNAV (N96)
+1200-040|Craftmaster Insignia|OPNAV (N96)
+1200-050|Organization of the Enlisted Classification Program|OPNAV (N132G)
+1200-070|Nuclear Weapons Security (NWS) Insignia|SSP (SP31)
+1210-010|Naval Aviator and Flight Officer Designations|OPNAV (N13)
+1210-020|Naval Astronaut Designation|OPNAV (N13)
+1210-030|Flight Surgeon|OPNAV (N13)
+1210-040|Flight Nurse Subspecialty Designation|OPNAV (N13)
+1210-081|Medical Service Corps Flight Officer Designation|PERS-4415
+1210-090|Surface Warfare Officer (SWO) Designation|OPNAV (N861C)
+1210-100|Line Officer Designation: Qualified in Submarines|OPNAV (N13)
+1210-110|Engineering Duty Officer Designation: Qualified in Submarines|BUPERS-31
+1210-111|Engineering Duty Officer Diver|BUPERS-311
+1210-120|Supply Corps Officer Designation: Qualified in Submarines|OPNAV (N13)
+1210-130|Medical Officer Designation: Qualified in Submarines|OPNAV (N13)
+1210-145|Diving Chief Warrant Officer (7201)|BUPERS-319
+1210-150|Surface Warfare Supply Corps Officer Designation|OPNAV (N861C)
+1210-160|Surface Warfare Officers (SWO) (111X) Requirements for|OPNAV (N861C)
+1210-170|Command at Sea Insignia: Qualifications|OPNAV (N131)
+1210-180|Command Ashore Insignia: Qualifications|OPNAV (N131)
+1210-190|Active Duty Engineering Duty Officer (1440): Qualifications|PERS-445
+1210-200|Inactive Duty Engineering Duty Officer (1445): Qualifications|NAVSEA (10R)
+1210-210|Information Warfare Officer Qualification|OPNAV (N2)
+1210-220|Naval Special Warfare (NSW) Officer - Sea-Air-Land (SEAL)|OPNAV (N13)
+1210-230|Explosive Ordnance Disposal (EOD) Officer|BUPERS-31
+1210-240|Flight Meteorologist Qualifications|PERS-449
+1210-250|Special Evaluator/Non-Aeronautically Designated Officers|PERS-472
+1210-260|Aviation Operations Officers and Non-Aeronautically Designated|OPNAV (N13)
+1210-270|Officer Designation Codes|OPNAV (N13)
+1210-280|Designation of Limited Duty or Chief Warrant Officer as Eligible to|OPNAV (N13)
+1210-300|Surface Warfare Medical Department Officer (SWMDO)|OPNAV (N861C)
+1210-310|Navy Ocean Facilities Program (OFP) Officer|PERS-4413
+1210-320|Navy Expeditionary Supply Corps Officer Designation|OPNAV (N95)
+1212-010|Lateral Transfer and Change of Designator Codes of Regular and|BUPERS-31
+1212-020|Redesignation Procedures for Limited Duty Officers (LDOs) and|BUPERS-319
+1212-030|Redesignation of Limited Duty Officers|BUPERS-3
+1212-040|Engineering Duty (ED) Option Program|BUPERS-31
+1212-050|Information Warfare Community (IWC) Option Program|BUPERS-317
+1213-020|Suspension and Removal of Foreign Area Officer (FAO) Additional|PERS-473C
+1214-010|Officer Subspecialty System|PERS-45E
+1220-010|Aircrew and Aviation Rescue Swimmer Programs|BUPERS-312
+1220-020|Naval Aircrew Warfare Specialist (NAWS) Designation|BUPERS-323
+1220-022|U. S. Marine Corps (USMC) Combat Aircrew Insignia and Designation|HQMC (AMS)
+1220-030|Parachutist Designation and Duty|OPNAV (N13)
+1220-040|Submarine Qualification Designations for Enlisted Members|OPNAV (N973B)
+1220-050|Enlisted Surface Warfare Specialist (ESWS) Designation|OPNAV (N861C)
+1220-060|Enlisted Aviation Warfare Specialist (EAWS) Designation|OPNAV (N889H)
+1220-070|Enlisted Explosive Ordnance Disposal Warfare (EWS) Specialist|OPNAV (N85)
+1220-080|Enlisted Diving Warfare Specialist (DSW) Designation|OPNAV (N85)
+1220-100|Navy Diver (ND) Rating|BUPERS-312-ND
+1220-101|U. S. Marine Corps (USMC) Marine Combatant Diver Breast Insignia and|BUPERS-325
+1220-102|Self-Contained Underwater Breathing Apparatus (SCUBA) Diver Program|BUPERS-329G
+1220-200|Explosive Ordnance Disposal (EOD) Rating|BUPERS-329F
+1220-280|Hazardous Duty Incentive Pay (HDIP) for Demolition Duty|OPNAV (N13)
+1220-300|Special Warfare Operator (SO) Rating|BUPERS-324
+1220-350|Assault Boat Coxswain Qualifications|PERS-402B
+1220-360|Damage Control Scene Leader Qualifications|PERS-402A
+1220-370|Enlisted Expeditionary Warfare (EXW) Specialist Designation|OPNAV (N85)
+1220-400|Special Warfare Boat Operator (SB) Rating|BUPERS-324
+1220-410|SEAL/EOD/SWCC/DIVER/AIRR Physical Screening Testing Standards|BUPERS-3
+1221-021|Navy Enlisted Classification (NEC) Code Award and Removal Procedures|BUPERS-328
+1221-030|Purpose and Scope of Navy Personnel Classification System|NAVMAC
+1223-010|Enlisted Pay Grades and Titles|NAVMAC
+1236-010|Armed Forces Classification Test (AFCT) Administration and Procedures for|NETC (N55)
+1236-020|Post Accession Reclassification Program|OPNAV (N13)
+1236-030|Safeguarding Enlisted Classification Test Material|OPNAV (N13)
+1300-010|Flag Level Review Concerning Personnel Assignment|PERS-451
+1300-035|Assignments Outside the Department of Defense (DoD)|PERS-441
+1300-060|Administration of Naval Members Performing Duty with the Army, Air Force,|PERS-451
+1300-070|Administration of Army and Air Force Members Performing Duty with the|OPNAV (N13F)
+1300-081|Interservice Transfer of an Officer out of the Navy|PERS-8331
+1300-082|Interservice Transfer of an Officer into the Navy|BUPERS-31
+1300-090|Permanent Change of Station (PCS) Entitlement Policy - Overview|OPNAV (N13)
+1300-100|Permanent Change of Station (PCS) Entitlement Policy - General and|OPNAV (N13)
+1300-110|Permanent Change of Station (PCS) Entitlement Policy - Determining|OPNAV (N13)
+1300-120|Permanent Change of Station (PCS) Entitlement Policy - Issuing|OPNAV (N13)
+1300-130|Permanent Change of Station (PCS) Entitlement Policy - General|OPNAV (N130E)
+1300-150|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-160|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-170|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-180|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-190|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-200|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-210|Command Sponsorship of Dependents at Overseas Duty|OPNAV (N130E)
+1300-302|Suitability for Overseas/Remote Duty Assignment and Suitability Reporting|PERS-454
+1300-306|Overseas Screening Deficiency Reports and Early Return Request|PERS-451
+1300-308|Overseas Tour Lengths and Types|PERS-451
+1300-310|Overseas Extensions|PERS-451
+1300-312|Units Transitioning to Overseas Locations|PERS-451
+1300-314|Diego Garcia Assignments|PERS-451
+1300-316|Dependent Entry Approval Information|PERS-456
+1300-320|Nuclear Weapons (NW) Personnel Reliability Program (PRP) Preliminary|SSP(SP31)
+1300-400|Dislocation Allowance (DLA) and Secretary of the Navy Finds|PERS-451
+1300-500|Reassignments for Humanitarian Reasons (HUMS)|PERS-40HH
+1300-600|Twilight Tours|PERS-40
+1300-700|Exceptional Family Member Program (EFMP)|PERS-456
+1300-800|Transfer of Personnel to Operational Duty (Operational Screening)|PERS-40BB
+1300-802|Navy Expeditionary Intelligence Command (NAVEXINTCOM)|PERS-408
+1300-803|Coastal Riverine Force (CRF)|PERS-40
+1300-804|Assignment to Coastal Riverine Force (CRF) Training Evaluation Unit (TEU)|PERS-40
+1300-807|Navy Expeditionary Logistics Support Group (NAVELSG) Type 2 Sea Duty|PERS-40
+1300-996|Assignment to Naval Criminal Investigative Service|PERS-405
+1301-100|Officer Distribution - Overview|PERS-451
+1301-102|Officer Distribution - Process|PERS-451
+1301-104|Officer Distribution - General Tour Lengths and Rotations|OPNAV (N131)
+1301-106|Officer Distribution - Time on Station|OPNAV (N131)
+1301-108|Officer Distribution - Retainability|OPNAV (N131)
+1301-110|Officer Distribution - Prescribed Sea Tour (PST) and Recommended|OPNAV (N131)
+1301-112|Officer Distribution - Command Tour Lengths|OPNAV (N131)
+1301-114|Officer Distribution - Assignment to/from Navy Personnel Command|PERS-45
+1301-116|Officer Distribution - U.S. Military Academy and U.S. Air Force|OPNAV (N131)
+1301-118|Officer Distribution - Major Defense Acquisition Position|OPNAV (N131)
+1301-120|Officer Distribution - Joint Duty Assignment Tour Lengths (O-6 and Below)|PERS-450
+1301-122|Officer Distribution - Transfer of Officers to Operational|PERS-451
+1301-200|Officer Special Assignments|OPNAV (N131)
+1301-201|Officer Special Assignments - Ensign Stash Assignments|OPNAV (N131)
+1301-202|Officer Special Assignments - Nominative Billets/Nomination of Officers|PERS-441
+1301-203|Officer Special Assignments - Aide Assignments|PERS-44ES
+1301-205|Officer Special Assignments - U.S. Naval Academy|PERS-440
+1301-207|Officer Special Assignments - Defense Attaché Service (DAS): Attaché|PERS-474B
+1301-208|Officer Special Assignments - Navy Recruiting Command|PERS-440A
+1301-209|Officer Special Assignments - Naval Reserve Officer|PERS-440A
+1301-210|Officer Special Assignments - Navy Recruit Training Command|PERS-444C
+1301-211|Officer Special Assignments - Navy Headquarters/Staff Level Equal|OPNAV (N134E)
+1301-212|Officer Special Assignments - Navy Flight Demonstration|PERS-43
+1301-213|Officer Special Assignments - Reserve Fleet Logistics Support Squadron|PERS-46
+1301-214|Officer Special Assignments - Naval Leadership Instructor (Facilitator)|NLEC
+1301-215|Officer Special Assignments - Brig and Transient Personnel|PERS-00D1
+1301-216|Officer Special Assignments - Joint Duty Assignments (JDA)|PERS-450
+1301-217|Officer Special Assignments - North Atlantic Treaty Organization (NATO)|PERS-832
+1301-219|Officer Special Assignments - Limited Duty Officer (LDO) and Chief Warrant|OPNAV (N131)
+1301-220|Officer Special Assignments - Engineering Duty Officer (EDO)|OPNAV (N131)
+1301-221|Officer Special Assignments - Training and Administration of the Reserve|PERS-46
+1301-222|Officer Special Assignments - Surface Warfare Officer (SWO)|PERS-412
+1301-223|Officer Special Assignments - Nuclear Qualified Surface|OPNAV (N133)
+1301-224|Officer Special Assignments - Prisoners of War (POW)|OPNAV (N131)
+1301-226|Officer Special Assignments - Training Instructor Duty|NSTC (N13)
+1301-227|Officer Special Assignments - Officers without Security Clearances|PERS-834
+1301-228|Officer Special Assignments - Officers not in Compliance with|OPNAV (N170B)
+1301-229|Officer Special Assignments - Naval Inspector General|PERS-451
+1301-230|Officer Special Assignments - Reassignments of Disabled Officers|PERS-83
+1301-233|Specialty Career Path Update|PERS-41
+1301-234|Officer Special Assignments - Human Resources Community|PERS-4421
+1301-235|Command Policies and Procedures - Specific Policies Related to Screening|PERS-445
+1301-236|Officer Special Assignments – Aviation Acquisition Professional (AP)|PERS-43
+1301-237|Officer Special Assignments - Information Warfare Line (IWL) Officer|PERS-47
+1301-239|Public Affairs Officer (PAO) Milestone and Command Screening|PERS-448
+1301-240|Officer Special Asssignment - Navy Cyber Warfare Development Group|PERS-47/445
+1301-500|Consideration of Accessions, Interservice Transfers, and|OPNAV (N132D)
+1301-600|Voluntary and Involuntary Recall/Mobilization of Navy's Reserve|PERS-9
+1301-700|Acquisition Professional Membership (APM)|PERS-434
+1301-710|Command Policies and Procedures - Active Component Chaplain Corps|PERS-4414
+1301-800|Command Policies and Procedures - Overview|OPNAV (N131)
+1301-802|Command Policies and Procedures - Specific Policies|OPNAV (N131)
+1301-804|Officer Policies and Procedures - Command Screen|OPNAV (N131)
+1301-806|Command Policies and Procedures - Command Ashore|OPNAV (N131)
+1301-808|Command Policies and Procedures - Acquisition Corps (AC)|PERS-447
+1301-809|Command Policies and Procedures - Foreign Area Officer (FAO)|PERS-47
+1301-810|Command Policies and Procedures - Command of Major|PERS-444E
+1301-812|Command Policies and Procedures - Screening for Full Time Support|PERS-46
+1301-814|Command Policies and Procedures - Commanding Officer (CO)/|OPNAV (N131)
+1301-815|Policies and Procedures - Active Component Medical Department Officer|PERS-4415
+1301-816|Command Policies and Procedures - Navy Recruiting District|OPNAV (N131)
+1301-818|Procedures for Officers not Desiring Orders to Command or|PERS-451
+1301-819|Procedures for Surface Limited Duty Officers (LDO) not Desiring Orders to|PERS-414
+1301-820|Command Policies and Procedures - Command - Executive|PERS-451
+1301-824|Command Policies and Procedures - Major Fleet Readiness Center|OPNAV (N131)
+1301-826|Command Policies and Procedures - Shore Station Senior Leadership|PERS-440
+1301-900|Subspecialty Management, Graduate Education, and|PERS-45E
+1301-902|Selection for Fully-Funded Graduate Education|PERS-440
+1301-904|Service Colleges|PERS-440
+1301-906|Navy Officer Leadership Continuum Training|PERS-452
+1301-907|Naval Leader Legal Training Continuum|PERS-444
+1306-100|Enlisted Distribution Management System|PERS-451
+1306-101|Enlisted Assignment System|PERS-40
+1306-102|Type Duty Assignment Codes|PERS-451
+1306-104|Projected Rotation Date (PRD)|PERS-451
+1306-106|Time on Station (TOS) and Retainability Obligated Service|PERS-451
+1306-108|Enlisted Manning Inquiry Report (EMIR)|PERS-4013
+1306-110|Enlisted Duty Preference|PERS-40
+1306-112|NAVPERS 1306/7, Enlisted Personnel Action Request|PERS-40
+1306-114|Early Return for Cause (ERFC) of Enlisted Personnel|PERS-40HH
+1306-116|Prescribed Sea Tour (PST)/Normal Shore Tour (NST)|PERS-40MM
+1306-118|Activity Tour upon Completion of an Overseas Department of Defense|PERS-451
+1306-120|Commanding Officer Shipboard Operational Holds (OPHOLD)|PERS-4013
+1306-122|Permanent Change of Station (PCS) and Permanent Change of Activity|PERS-451
+1306-124|Tour Extensions and Split Tours|PERS-40
+1306-125|Enlisted Record Flags|PERS-40BB
+1306-126|First-Term Personnel Assignment Policy|PERS-451
+1306-128|Rotation for Construction Rating Personnel|PERS-401
+1306-130|Post-Confinement Assignment Procedures|PERS-40
+1306-132|Reassignment of Enlisted Personnel Ashore - Completion of Tour|PERS-4013
+1306-134|Assignment Policy when not in Compliance with Physical Readiness|PERS-40
+1306-136|Security Limitations for Surface Nuclear Powered Ships|PERS-403
+1306-141|Voluntary Sea Duty Program|PERS-4013
+1306-200|Isolated Duty Tours|PERS-451
+1306-300|Overseas Tour Extension Incentives Program (OTEIP)|PERS-40CC
+1306-400|Submarine Duty|PERS-403
+1306-402|Qualification for Assignment to Submarine Duty|PERS-403
+1306-404|Request for Submarine Training and Assignment|PERS-403
+1306-406|Reassignment of Qualified Submariners|PERS-403
+1306-408|Performance Monitoring Team (PMT)|PERS-403
+1306-410|Chief of the Boat|PERS-403
+1306-412|New Construction, Overhaul (OVHL), Depot Modernization Period (DMP),|PERS-403
+1306-414|Special Procedures for Assignment of SSBN Personnel|PERS-403
+1306-416|Processing of Personnel Disqualified from Submarine Duty|PERS-403
+1306-418|Submarine NR-1 and Deep Submergence Unit (DSU) Duty|PERS-403
+1306-420|Assignment to Flag Writer Training for Submarine Qualified|PERS-403
+1306-422|Assignment to Submarine Surveillance Equipment Program (SSEP) Groom|PERS-403
+1306-423|Assignment to Undersea Surveillance Billets|PERS-403DH
+1306-424|Physical Qualifications for Submarine Duty|PERS-403
+1306-425|Assignment to - Navy Data Command Billets|COMUNDERSEASU
+1306-500|Nuclear Power Training|PERS-403
+1306-502|Qualifications for Assignment to Nuclear Propulsion Program|PERS-403
+1306-504|Requests for Assignment to Nuclear Propulsion Training|PERS-403
+1306-600|Service Schools|PERS-4010
+1306-602|Class "A" and Service School Requirements|BUPERS-32
+1306-604|Active Obligated Service (OBLISERV) for Service Schools|BUPERS-328
+1306-611|Professional Apprenticeship Career Track (PACT) Program|BUPERS-32
+1306-614|Transfer Orders, Family Member Travel, Household Goods Information, and|PERS-451
+1306-616|Ineligible Students Received by Training Activity|PERS-4010S
+1306-618|Class "A" School and Rating Entry Requirements|BUPERS-312
+1306-700|Exchanges of Duty (Swaps)|PERS-40BB
+1306-800|Special Procedures for Units Undergoing Construction, or Conversion|PERS-401
+1306-802|Surface Ships Undergoing Construction And Conversion|PERS-409
+1306-803|Special Procedures for Newly Established/Recommissioned Naval|PERS-401
+1306-804|Newly Established or Transitioning Aircraft Squadrons|PERS-404EL
+1306-900|Assignment of Enlisted Personnel to Special Programs|PERS-409
+1306-901|Navy Food Management Teams (NFMTs)|PERS-402B
+1306-902|Regional Maintenance Center (RMC)/Ship Repair Facility (SRF) Program|PERS-402
+1306-904|Brig/Transient Personnel Unit (TPU)/ Transient Personnel Detachment (TPD)|PERS-4010E
+1306-905|Command Career Counselor Program|PERS-40
+1306-906|Naval Intelligence Support Center|PERS-403
+1306-907|Navy Ceremonial Guard|PERS-4010F
+1306-912|Seabee Construction Diver (CD) Program|BUPERS-329
+1306-913|Flag Writer (NEC 791D)|PERS-441
+1306-914|Military Assistance Advisory Groups (MAAGs), Military Groups,|PERS-4010G
+1306-915|Professional Development Instructor (PDI)|PERS-4010D1
+1306-916|Navy Drug and Alcohol Counselor and Intern|PERS-407CG
+1306-917|Navy Command Climate Specialist (CCS)|PERS-4010D1
+1306-918|Naval Support Unit, State Department|PERS-401
+1306-919|Navy Flight Demonstration Squadron (NAVFLIGHTDEMRON) (Blue Angels)|PERS-404
+1306-920|USS CONSTITUTION|PERS-4010D
+1306-921|Personnel Exchange Program (PEP)|PERS-4010G
+1306-924|Mobile Utilities Support Equipment (MUSE) Program|BUPERS-329
+1306-925|Senior Enlisted Academies (SEA)|PERS-40
+1306-926|Joint Staff Duty with Military Entrance Processing Stations (MEPS)|PERS-4010D
+1306-927|Navy Harbor Pilot Program|PERS-402B
+1306-928|Navy Music Program (MU)|Fleet
+1306-929|Navy Manpower Analysis Center (NAVMAC)|PERS-40BB
+1306-930|Historic Ship NAUTILUS (SSN 571)|PERS-403C
+1306-931|Navy Absentee Collection and Information Center (NACIC)|PERS-4010F
+1306-934|Nuclear Trained Personnel Assigned to Nuclear Capable|PERS-403
+1306-935|Command Master Chief (CMC) Program|PERS-40FF
+1306-936|Advancement Examination Developer and Military Exam Leader|PERS-40BB
+1306-937|Culinary Specialist Executive Services Program|PERS-44ES
+1306-939|White House Communications Agency (WHCA)|PERS-4010F
+1306-940|Naval Reserve Officer Training Corps (NROTC) Training and|PERS-402SK
+1306-942|USS ARIZONA (BB 39) Memorial|PERS-4010D
+1306-943|Mobile Environmental Teams (METs)|PERS-404DH
+1306-944|Naval Special Warfare Tactical Communications Commands (TACCOMM)|PERS-4013
+1306-945|Flag Officer (Staff) Duty|PERS-40
+1306-946|Navy Tugmaster Program|PERS-405
+1306-947|Navy Exchange Service Command (NEXCOM)|PERS-402A
+1306-948|Commander Naval Air Forces (CNAF) Aviation Maintenance Management|PERS-404
+1306-949|Landing Craft, Air Cushion (LCAC)|PERS-409
+1306-950|Marine Helicopter Squadron One (HMX-1) (Nighthawks)|PERS-4010F
+1306-953|Instructor Duty|PERS-40BB
+1306-954|Recruit Division Commander (RDC) Duty|PERS-4010
+1306-955|Survival, Evasion, Resistance, and Escape (SERE) Instructor|PERS-4010E3
+1306-956|Navy Reserve Instructor Duty|PERS-4012C
+1306-957|Naval Nuclear Power Program Training Activities|PERS-403
+1306-958|Academic Remedial Training (ART) Instruction Duty|PERS-40BB
+1306-959|Afloat Training Groups (ATGS)|PERS-40
+1306-960|Instructor Duty at Field Medical Service Schools (FLDMEDSERVSCOLs)|PERS-407
+1306-961|Cryptologic Technician Interpretive (CTI) Language Instructor Candidates|PERS-408
+1306-962|Instructor Duty at Naval School of Music|Fleet Band Activities
+1306-964|Recruiting Duty|PERS-4010C
+1306-965|Career Recruiter Force (CRF)|PERS-4010C
+1306-966|Enlisted Rating Detailer|PERS-4010F
+1306-968|Camp David (Naval Support Facility, Thurmont, MD)|PERS-4010F
+1306-970|Joint Communications Support Element (JCSE)|PERS-40
+1306-971|Navy Military Training Instructor Duty|PERS-4010D
+1306-972|Patrol Coastal (PC) Crew|PERS-40
+1306-973|Navy Provisional Guard Battalion (Cuba)|PERS-402D
+1306-975|Navy Special Warfare Meteorology and Oceanography Support|PERS-404DH
+1306-976|Enlisted Musician (MU) Assignments to Navy Preferentially Staffed Bands -|Fleet
+1306-979|Recruitment/Assignment to Commander, Naval Special|PERS-401D
+1306-980|Navy Interactive On-Net (ION) Operator Certification Program|BUPERS-327
+1306-981|Navy Interactive On-Net (ION) Computer Network Exploitation (CNE) Trainer|PERS-408
+1306-982|Assignment of Nuclear Trained Master Chief Petty Officers (MCPO)|PERS-403
+1306-983|Medical Deep Sea Diving and Fleet Marine Force Reconnaissance|BUPERS-325
+1306-984|Naval Special Warfare Command (NAVSPECWARCOM) Tactical|PERS-408
+1306-985|United States Special Operations Command (USSOCOM)|PERS-4010G
+1306-986|Recruitment/Assignment to Naval Special Warfare Group Ten Special|PERS-401
+1306-987|Instructor Duty for Enlisted Medical Education and Training Campus (METC)|PERS-407
+1306-989|Assignment to Cryptologic Warfare Maritime Activity Sixty One (CWMA-61)|PERS-408
+1306-990|Defense Courier Duty|PERS-4010G
+1306-991|Marine Barracks Washington, DC (8th and I)|PERS-4010F
+1306-992|Assignment to Submarine Learning Center Staff or Site Instructor Duty|PERS-403
+1306-993|Harbor Patrol Unit (HPU) Level II Coxswain (NEC 853A) - Master-At-Arms|PERS-405
+1306-994|3-M System Coordinator at Sea and Shore|PERS-402
+1306-995|Assignment to Cryptologic Aircrew Billets|PERS-408
+1306-996|Naval Network Warfare Command Blue Teams|PERS-408
+1306-997|Assignment to Navy Information Operations Detachment Jacksonville,|PERS-408
+1306-999|Assignment to Naval Intelligence Special Career Program (NISCP)|NISCP/PERS-4010
+1320-020|Message Orders for Inactive Duty Reserve Officers|PERS-812
+1320-030|Delegation of Authority to Issue Orders and Administrative|PERS-455
+1320-060|Permanent Change of Station Transfer Order (PCSTO), Delivery,|PERS-455
+1320-090|Proceed Time in Execution of Orders|OPNAV (N13)
+1320-100|Travel Time in Execution of Permanent Change of Station (PCS)|PERS-451
+1320-110|Travel Time in Connection with Call to or Release from Active Duty|OPNAV (N13)
+1320-120|Travel Orders for Patients and Attendants|PERS-83
+1320-140|Permanent Change of Station (PCS) Transfer Order Reporting Policy|PERS-451
+1320-170|Medical Examination of Firefighting Instructor Personnel|PERS-4415
+1320-200|Temporary Duty Travel Entitlement Policy|OPNAV (N130C)
+1320-210|Permissive Temporary Duty (PTDY) Authorization for House Hunting|OPNAV (N130)
+1320-220|Permissive Temporary Duty (PTDY) Authorization for Job/House Hunting|OPNAV (N130E)
+1320-300|Types of Orders|PERS-451
+1320-306|Permanent Change of Station (PCS) Transfer Order Delivery|PERS-451
+1320-307|Permanent Change of Station/Temporaty Additional Duty Warm Hand-off|PERS-451
+1320-308|Permanent Change of Station (PCS) Transfer Order Execution|PERS-451
+1320-310|Permanent Change of Station (PCS) Transfer Order|PERS-451
+1320-311|Permanent Change of Station (PCS) Orders Modification|PERS-451
+1320-312|Order Clarification and Claims|PERS-451
+1320-314|Temporary Duty (TDY) Travel Orders|OPNAV (N130)
+1320-316|General Court-Martial Orders|PERS-451
+1320-320|Permanent Change of Station (PCS) Orders to Ships under|PERS-451
+1320-322|Change of Homeport or Permanent Duty Station (PDS) of a|PERS-451
+1320-324|Permanent Change of Station (PCS) Procedures for Forward|PERS-451
+1320-326|Personnel Support Functions for NATO Southern Region|PERS-451
+1321-020|Officer Flight Orders (Non-Aeronautically Designated)|PERS-435
+1321-030|Officers Detailed to Recruiting Duty|CNRC (N1/N4)
+1321-040|Detail of Chiefs of Staff, Executive Assistants, Flag Secretaries, Flag|PERS-44ES
+1321-050|Assignment to Duty of Limited Duty Officers|OPNAV (N13)
+1321-100|Orders for Officer Special Programs|PERS-451
+1321-105|Active Component (AC), Indefinite Recall Program for Reserve Component|BUPERS-31
+1321-110|Active Component (AC), MPN-Funded, Definite Recall Program for Officers|PERS-92
+1326-010|Transfer of Enlisted Personnel on Bureau of Naval Personnel Orders|PERS-451
+1326-020|Permanent and Temporary Flight Order to Enlisted Personnel|PERS-404E
+1326-040|Military Personnel, Navy (MPN) - Funded Active Duty (ACDU) Definite Recall|OPNAV (N132)
+1331-030|Officer Applications for Information Warfare Duty Assignment|PERS-472
+1331-040|Navy Chaplain Corps (CHC) Officer Career Status|OPNAV (N097)
+1401-010|Communication with Administrative Selection Boards|PERS-451F
+1401-020|Advancement Exam Readiness Review (AERR)|NETPDC (N33)
+1414-010|Swimmer Training and Qualifications|OPNAV (N13)
+1420-010|Communication with Officer Promotion Selection Boards|PERS-80
+1420-030|Regulations Governing Physical Examinations for Promotion of|PERS-80
+1420-050|Counseling of Officers Who Fail to Select for Promotion|PERS-4
+1420-060|Frocking of Enlisted Personnel|PERS-80
+1420-070|Commander's Responsibility in the Review Process Involving Withhold or|PERS-833
+1420-100|Joint Stamp Requirements for Active Duty and Reserve Full Time Support|PERS-450
+1426-010|Permanent Appointment to Active Duty Chief Warrant Officer and Limited|PERS-801G
+1427-010|Precedence Among Enlisted Members|PERS-812
+1430-010|Accelerated Advancement of Recruit Training, Class “A”School Graduates,|PERS-812
+1430-020|Advancement After Reduction in Rate|PERS-80
+1430-040|Accelerated Advancement for Enlisted Musician (MU)|Fleet Band Activities
+1430-050|Accelerated Advancement for Hospital Corpsmen Earning Independent Duty|BUPERS-325
+1440-010|Conversion Authorization|BUPERS-32
+1440-011|Forced Conversion|BUPERS-32
+1440-020|Conversion to the Navy Counselor (NC) (Counselor) Rating|BUPERS-312-ADM
+1440-040|No-Fault Reversion to Former Rating|BUPERS-32
+1450-010|Reduction in Rate|PERS-832
+1500-010|Survival Training Requirements|OPNAV (N889J)
+1500-020|First Aid Training Requirements|BUMED (N7)
+1500-030|Medical Department Schools|PERS-4415
+1510-030|Advanced Electronics Field, Advanced Technical Field, and Nuclear Field|BUPERS-312
+1520-020|Officer Education Reports|PERS-451
+1520-030|Submarine Officer Training|OPNAV (N13)
+1520-040|Surface Warfare Officer (SWO) Department Head Screening and Training|PERS-41
+1520-050|Nuclear Propulsion Training (Surface and Submarine)|OPNAV (N133)
+1520-060|Nurse Candidate Program|OPNAV (N13)
+1530-020|United States Military Academy and Air Force Academy|PERS-444
+1531-010|Naval Academy Program|OPNAV (N731C)
+1531-020|Disposition of Midshipmen Disenrolled from the Naval Academy|Naval Academy
+1540-010|Required Service of Officers Disenrolled from Special Navy Training|PERS-454
+1542-010|Lateral Transfer Into Naval Aviation|BUPERS-313
+1542-020|Aviation Officer Cross-Training in Different Type Aircraft|PERS-432
+1570-010|Training and Participation of Naval Reserve Flag Officers on|PERS-491
+1600-010|Deserters|PERS-00D1
+1600-020|Apprehension of Absentees and Deserters|PERS-00D1
+1600-030|Acceptance and Disposition of Returned Deserters|PERS-00D
+1600-040|Procedures for Commands to Which Enlisted and Officer Absentees are|PERS-00D
+1600-050|Procedures When an Enlisted Absentee Returns to|PERS-00D1
+1600-060|Declaration of Desertion|PERS-00D2
+1600-070|Declaration of Return from Desertion|PERS-00D1
+1600-090|Removal of Marks of Desertion|PERS-00D1
+1600-100|Lost Time|BUPERS-00J
+1600-120|Procedures for Reporting Members as Failed to Report under|CNIC (N-141)
+1610-010|Navy Performance Evaluation and Counseling System|PERS-32
+1610-015|Documentation on Fitness Reports and Performance Evaluations for Failure|PERS-454  PERS-
+1610-020|Disqualification of Officers for Duty Involving Flying|PERS-4320
+1610-030|Procedures for Commands to Which Inactive Reserve Enlisted|PERS-461
+1610-040|NAVPERS 5354/2 (Rev. 2-02), Navy Equal Opportunity (EO)/|OPNAV (N134E)
+1611-010|Officer Performance and Separations for Cause|PERS-834
+1611-020|Officer Detachment for Cause (DFC)|PERS-83
+1616-010|Detachment for Cause (DFC) of Enlisted Personnel|PERS-832
+1616-030|Denial of Reenlistment for Career Petty Officers|PERS-832
+1616-040|Enlisted Performance (E-6/7/8/9)|PERS-832
+1616-050|Enlisted Performance (E-5 and Below)|PERS-832
+1620-010|Interrogation and Search of Service Members|BUPERS-00J
+1620-020|Reservists Subject to the Uniform Code of Military Justice (UCMJ)|BUPERS-00J
+1626-010|Deferment of Disciplinary Action when Service Records are|PERS-832
+1626-020|Enlisted Service Record Entries After Nonjudicial Punishment (NJP)|PERS-832
+1626-030|Disposition of Enlisted Personnel Upon Completion of Disciplinary|PERS-832
+1640-010|Confinement Policy|PERS-00D
+1640-020|When Confinement is not Appropriate|PERS-00D1
+1640-030|Types of Navy Confinement Facilities, Military Correctional Facilities and|BUPERS-00D
+1640-060|When to Transfer Post-Trial Prisoners Using Permanent Change of Station|PERS-00D
+1640-090|Who Pays for the Transfer|PERS-00D1
+1640-100|What the Member Needs Upon Initial Transfer to Confinement|PERS-00D1
+1640-105|Transferring Prisoners between Confinement Facilities|PERS-00D1
+1640-110|Transporting Personnel to Confinement Facilities|PERS-00D
+1640-140|Escaped Prisoners|PERS-00D
+1640-150|Navy Parolees/Supervised Releasees|PERS-00D
+1700-010|Political Activity of Members on Active Duty|BUPERS-00J
+1700-020|Participation in Civil Rights Demonstrations|BUPERS-00J
+1710-010|Operation of Navy Morale, Welfare, and Recreation (MWR)|CNI (N25)
+1730-010|Use of Lay Leaders in Religious Services|OPNAV (N097)
+1730-020|Immunization Exemptions for Religious Beliefs|OPNAV (N131)
+1731-010|Religious Observances|OPNAV (N097)
+1740-020|Information Concerning Pregnant Members|OPNAV (N1D)
+1740-030|Maternity Care Available Before and After Separation|OPNAV (N17)
+1741-020|Government Life Insurance|PERS-00C
+1741-030|Family Servicembers' Group Life Insurance (FSGLI)|PERS-00C
+1746-010|Procedures when Government Messing is not Available|OPNAV (N130)
+1746-020|Procedures when Authorized to Mess Separately|OPNAV (N130)
+1746-030|Meal Passes for Enlisted Personnel|OPNAV (N130)
+1750-010|Transportation of Student Dependents Between CONUS and|OPNAV (N13)
+1754-010|SEA LEGS|CNI (N212)
+1754-020|Family Contacts and Assistance During Deployment|CNI (N215)
+1754-030|Support of Family Members|BUPERS-00J
+1754-040|Military Spouse Licensure and Business Costs Reimbursement|OPNAV (N17)
+1770-010|Definitions and Acronyms|PERS-00C
+1770-020|Duty Status-Whereabouts Unknown (DUSTWUN) and "Missing" Status|PERS-00C
+1770-030|Personnel Casualty Report Procedures|PERS-00C
+1770-040|Reporting the Death of Non-Active Duty Sailors|PERS-00C
+1770-060|Judge Advocate General Manual (JAGMAN) Reporting|PERS-00C
+1770-090|Suicide Prevention Program|OPNAV (N17)
+1770-100|Reporting Requirements in the Event of a Naval Disaster|PERS-00C
+1770-140|Commanding Officer's Letter to Next of Kin|PERS-00C
+1770-150|Release of Casualty Information to the Media or General Public|PERS-00C
+1770-160|Casualty Assistance Calls Program (CACP)|PERS-00C
+1770-170|Notification of Next of Kin in Case of Death, "Duty Status Whereabouts|PERS-00C
+1770-200|Deceased Member Personal Effects|PERS-00C
+1770-210|Manual for Escorts of Deceased Naval Personnel|PERS-00C
+1770-230|Wounded, Ill, and Injured Sailors: Casualty Reporting, Notification, and|PERS-00C
+1770-260|Civilian Employee Casualty Reporting, Notification, and Assistance|PERS-00C
+1770-270|Funeral Travel|PERS-00C
+1770-271|Memorial Service Travel|PERS-00C
+1770-275|Presentation of Burial Flags|PERS-00C
+1770-280|Death Gratuity|PERS-00C
+1772-010|Rerserve Component Survivor Benefit Plan (RC-SBP)|PERS-912
+1780-011|Transfer of Education Benefits|PERS-311
+1800-010|General Guidelines for Conducting Ceremony for Retirement or Transfer to|PERS-835
+1800-020|Effective Date of Retirement, Issuance of Retirement Orders and|PERS-836
+1800-040|Placement on Retired List and Responsibility of the Retiree|PERS-83
+1800-060|Authorization of Naval Reserve Retirement Point Credit for Instruction|PERS-912
+1800-070|Benefits of the Armed Forces Retirement Home (United States|PERS-00C
+1810-010|Voluntary Retirement of Enlisted Personnel - 30 or More Years of Active|PERS-836
+1810-020|Submission of Application for Voluntary Retirement from Active Duty (Officer)|PERS-835
+1810-080|Enrollment in the Blended Retirement System|OPNAV (N13)
+1810-081|Continuation Pay for Service Members Enrolled in the Blended Retirement|OPNAV (N13)
+1810-082|Lump Sum Payment of the Retirement Annuity for Service Members Enrolled|OPNAV (N13)
+1811-010|Retention on or Recall to Active Duty in a Retired Status|PERS-8353
+1820-010|Retirement of Members of the Fleet Reserve|PERS-912
+1820-020|Non-Regular Reserve Retirement Without Pay - Qualification, Procedures,|PERS-912
+1820-030|Non-Regular Reserve Retirement With Pay - Qualification, Procedures,|PERS-912
+1820-040|Notification of Eligibility Retired Pay for Non-Regular Reserve|PERS-95
+1820-050|Requirements for a Year of Qualifying Service Toward a Non-Regular|PERS-912
+1830-010|Members of Fleet Reserve Subject to the Uniform Code of Military Justice|PERS-83
+1830-020|Officers Appointed from the Fleet Reserve|PERS-83
+1830-030|Physical Examination in Connection with Retirement, Transfers to Fleet|PERS-83
+1830-040|Transfer to Fleet Reserve and Release from Active Duty - 20 Years|PERS-836
+1830-060|Travel or Residence Outside the United States by Fleet Reservists|PERS-83
+1830-070|Duties of Enlisted Members Transferred to the Fleet Reserve|PERS-83
+1850-010|General Information Regarding Physical Disability Retirement|PERS-83
+1850-020|Action Following Approved Disability Retirement|PERS-954
+1850-030|Temporary Disability Retired List|PERS-95
+1850-040|Officers on the Temporary Disability Retired List (TDRL)|PERS-83
+1900-015|Separation, Fleet Reserve, and Retirement Document Submission|MNCC
+1900-020|Convenience of the Government - Separation Based on|PERS-832
+1900-030|Separation of Enlisted or Officer Personnel by Reason of|PERS-832
+1900-040|Transfer to the Retired List, Retired Reserve, or the Fleet Reserve in a|PERS-832
+1900-120|Separation by Reason of Convenience of the Government - Medical|PERS-832
+1900-808|Physical Examination for Separation|PERS-832
+1910-010|Separation by Reaspon of Convenience of the Government - Dependency or|PERS-832
+1910-050|Enlisted Involuntary Separation Pay (Non-Disability) - Reserve Requirements|OPNAV (N13)
+1910-100|Reasons for Separation|PERS-832
+1910-102|Separation by Reason of Changes in Service Obligation (Active Duty and|PERS-832
+1910-104|Separation by Reason of Expiration of Active Obligated Service (EAOS)|PERS-832
+1910-106|Separation in Lieu of Trial by Court-Martial|PERS-832
+1910-108|Separation by Reason of Convenience of the Government -|PERS-832
+1910-110|Separation by Reason of Convenience of the Government - Hardship|PERS-40HH
+1910-112|Separation by Reason of Convenience of the Government - Pregnancy|PERS-832
+1910-118|Separation by Reason of Convenience of the Government - When a|PERS-911
+1910-124|Separation by Reason of Convenience of the Government -|PERS-832
+1910-125|Failure to Complete Initial Skills Training Pipeline|OPNAV (N132)
+1910-126|Separation by Reason of Convenience of the Government - Review Action|PERS-832
+1910-127|Separation by Reason of Convenience of the Government - Being an Alien|PERS-832
+1910-128|Separation by Reason of Defective Enlistments and Inductions - Minor|PERS-832
+1910-130|Separation by Reason of Defective Enlistments and Inductions - Erroneous|PERS-832
+1910-132|Separation by Reason of Defective Enlistments and Inductions - Defective|PERS-832
+1910-133|Failure to Complete Change of Rating (Conversion) Process|PERS-832
+1910-134|Separation by Reason of Defective Enlistments and Inductions - Fraudulent|PERS-832
+1910-136|Separation From the Delayed Entry Program (DEP)|PERS-832
+1910-138|Separation by Reason of Misconduct - Minor Disciplinary Infractions|PERS-832
+1910-140|Separation by Reason of Misconduct - Pattern of Misconduct|PERS-832
+1910-142|Separation by Reason of Misconduct - Commission of a Serious|PERS-832
+1910-144|Separation by Reason of Misconduct - Civilian Conviction|PERS-832
+1910-146|Separation by Reason of Misconduct - Drug Abuse|PERS-832
+1910-152|Separation by Reason of Non-Compliance with Alcohol Rehabilitation|PERS-832
+1910-153|Separation by Reason of Multiple Incidents of Driving Under the Influence|PERS-832
+1910-154|Separation by Reason of Entry-Level Performance and Conduct|PERS-832
+1910-156|Separation by Reason of Unsatisfactory Performance|PERS-832
+1910-157|Separation by Reason of Failure to Maintain Security Clearance|PERS-832
+1910-158|Separation by Reason of Unsatisfactory Participation in the Ready Reserve|PERS-913
+1910-160|Separation by Reason of Supremacist or Extremist Conduct|PERS-832
+1910-162|Separation by Reason of Family Advocacy Program (FAP) Rehabilitation|PERS-83CC
+1910-164|Separation by Reason of Best Interest of the Service (BIOTS)|PERS-832
+1910-166|Administrative Action for Fleet Reserve/Retired Reserve Eligible Personnel|PERS-832
+1910-168|Separation by Reason of Physical Disability|PERS-83
+1910-171|Separation By Reason of Physical Fitness Assessment (PFA) Failure|PERS-832
+1910-182|Disposition of Personnel Disenrolled from a Navy Officer Candidate Program|NSTC
+1910-184|Disposition of Enlisted Personnel Accepted for Appointment to the U.S.|PERS-832
+1910-186|Disposition of Enlisted Personnel Disenrolled from the Military|PERS-832
+1910-202|Counseling and Rehabilitation|PERS-832
+1910-206|Temporary Duty (TEMDU) Transfer for Separation Processing|PERS-832
+1910-208|Administrative Separation (ADSEP) Processing for Members|PERS-832
+1910-210|Processing for all Reasons|PERS-832
+1910-212|Factors Considered in Retention or Separation|PERS-832
+1910-214|Adverse Matter From a Prior Enlistment|PERS-832
+1910-216|Members Awaiting Medical Board Action|PERS-832
+1910-218|Members Assigned to Limited Duty (LIMDU)|PERS-832
+1910-220|Limitations on Separation Actions|PERS-832
+1910-222|Suspension of Separation|PERS-832
+1910-224|Action During the Period of Suspension|PERS-832
+1910-226|Conditional Waivers|PERS-832
+1910-228|Uniforms and Pay Upon Separation|PERS-832
+1910-230|Administrative Separation Processing & Discharge in Absentia|PERS-832
+1910-232|Pre-Separation Treatment for Drug/Alcohol Dependent Personnel|PERS-832
+1910-233|Mandatory Separation Processing|PERS-832
+1910-300|Guidelines on Characterization of Service|PERS-832
+1910-302|General Considerations on Characterization of Service|PERS-832
+1910-304|Description of Characterization of Service|PERS-832
+1910-306|Limitations on Characterization of Service|PERS-832
+1910-308|Entry Level and Uncharacterized Separations|PERS-832
+1910-402|Administrative Board and Notification Procedures|PERS-832
+1910-406|Consultation With Counsel Prior to Electing Rights|PERS-832
+1910-408|Response Time to Notice|PERS-832
+1910-410|When a Member is Processed for Multiple Reasons|PERS-832
+1910-412|How to Prepare a Sworn Affidavit of Service by Mail|PERS-832
+1910-414|Actions of the Commanding Officer (CO)|PERS-832
+1910-500|Guidelines on Conducting an Administrative Board|PERS-832
+1910-502|Administrative Board Composition|PERS-832
+1910-504|Right to Counsel|PERS-832
+1910-506|Senior Member of Board|PERS-832
+1910-508|Witnesses at Administrative Board|PERS-832
+1910-510|Presentation of Evidence|PERS-832
+1910-512|Rights of the Respondent|PERS-832
+1910-514|What is Binding on Administrative Boards|PERS-832
+1910-516|Record of Proceedings for Administrative Separation (ADSEP) Boards|PERS-832
+1910-518|Findings and Recommendations|PERS-832
+1910-600|Forwarding Cases to the Separation Authority (SA)|PERS-832
+1910-700|Separation Authority|PERS-4832
+1910-702|General Guidance for Separation Authorities (SA)|PERS-832
+1910-704|Determining Separation Authority|PERS-832
+1910-708|Separation Authority Action when Using Notification Procedures or|PERS-832
+1910-710|Procedures When an Administrative Separation Board was Held|PERS-832
+1910-712|General Court Martial Convening Authority (GCMCA) Letter and Message|PERS-832
+1910-800|Actions Which Effect the Separation|PERS-832
+1910-802|Preseperation Interview of Enlisted Personnel|PERS-832
+1910-804|Information to be Provided Upon Separation Regarding Claims for|PERS-832
+1910-806|Acknowledgment of Service Upon Separation|PERS-832
+1910-810|Issuance of Certificates, Buttons, and Pins upon Separation|PERS-832
+1910-812|Place of Separation|MNCC/PERS-832
+1916-010|Release From Active Duty of Reserve and Retired Enlisted Personnel|PERS-913
+1920-010|Transfer of an Officer for Administrative Separation Processing|PERS-834
+1920-020|Involuntary Separation Pay (Non-Disability) - Overview|PERS-83
+1920-030|Involuntary Separation Pay (Non-Disability) - Definitions and Policy|OPNAV (N13)
+1920-040|Involuntary Separation Pay (Non-Disability) - Eligibility Criteria and|PERS-83
+1920-050|Involuntary Separation Pay (Non-Disability) - Reserve Requirements|OPNAV (N13)
+1920-060|Involuntary Separation Pay (Non-Disability) - Pay Calculation and|PERS-83
+1920-070|Separation of Officer Personnel by Reason of Supremacist or|PERS-834
+1920-080|Release of Officers from Active Duty Prior to Completion of|PERS-834F
+1920-090|Release from Active Duty (RAD) Procedures|PERS-8331
+1920-100|Early Release of Officers from Active Duty|PERS-8331
+1920-110|Involuntary Release from Active Duty Orders of Ready Reserve Officers|PERS-911
+1920-120|Revocation of Commissions, Termination of Appointments, and|PERS-834
+1920-130|Termination of Officer Status, General|PERS-834
+1920-140|Separation Orders for Officers|PERS-834
+1920-160|Separation of Navy Reserve Officers on Inactive Duty|PERS-4911
+1920-170|Contingent Resignation for Acceptance to Attend Medical Training|PERS-834
+1920-180|Separation of Officers at the Convenience of the Government on the|PERS-834F
+1920-200|Officer Resignation Types and Procedures|PERS-451
+1920-210|Types of Discharge for Officers|PERS-834
+1920-230|Separation of Officers Under Various Statutory Provisions Not|PERS-834
+1920-240|Release of Officers From Active Duty Prior to Completion of Minimum|OPNAV (N131)
+1920-250|Administrative Separation of Navy Chaplain Corps Officers upon Loss of|OPNAV (N097)
+1920-260|Officer Unauthorized Absence (UA)|PERS-834
+3060-010|Command Individual Augmentee Coordinator (CIAC)|USFFC (N1 GFM)
+3060-020|Individual Augmentee Manpower Management (IAMM)|USFFC (N1 GFM)
+3060-030|Global Support Assignment (GSA)|OPNAV (N13R)
+3060-040|Overseas Support Assignment (OSA)|USFFC (N1 GFM)
+3060-050|Acessing the Ready Reserve|USFFC (N1 GFM)
+3060-060|Delay, Derferment, and Exemption Requests and Special Cases Board|PERS-9
+3060-070|Selected Reserve and Voluntary Training Unit Activation Screening Criteria|OPNAV (N13R)
+3060-080|Readiness and Screening for Active Component (AC) and Reserve|USFFC (N1 GFM)
+3060-090|Management of Misconduct Allegations Involving Active Component (AC)|OPNAV (N13R)
+4050-010|Privately Owned Vehicle Shipment Allowance Policy|OPNAV (N130C)
+4050-020|Household Goods (HHG) Shipment and Storage Entitlement Policy|OPNAV (N130)
+4650-010|Entry into and Departure from the United States by Alien Members of the|BUPERS-00J
+5215-010|Procedures for Preparing Articles and Submitting Changes to NAVPERS|BUPERS-00T4
+5216-010|Congressional Correspondence|PERS-00L
+5219-010|Obtaining Forms, Publications, and Directives Under the Purview of the|BUPERS-00T4
+5312-010|Utilization of Civilian and Military Personnel in Navy Morale, Welfare,|CNIC (N25)
+5352-010|Naturalization and Derived Citzenship of Military Personnel|OJAG (Code 16)
+5352-020|Naturalization of Alien Spouse and/or Alien Adopted Chidren of Military|CNIC (N911A)
+5352-030|Marriage of Naval Personnel to Foreign Nationals|CNIC (N911)
+5360-010|Navy Military Funerals|PERS-00C
+5360-020|Chaplain (Reserve Component) Support of Military Funerals|OPNAV (N097)
+5370-010|Outside Employment of Members on Active Duty|OPNAV (N131)
+5370-030|Restrictions on Civilian Employment of Retired Members|BUPERS-00J
+5510-010|Security Clearance Requirements and Procedures for Members|PERS-4832
+5726-010|Liaison with Civil Agencies|CNI (N214)
+5760-010|Navy Spouse Organizations and Activities|CNIC (N911)
+5800-010|Paternity Complaints|PERS-660
+5812-010|Setting Aside Nonjudicial Punishments (NJP)|BUPERS-00J
+5815-010|Executing a Dishonorable or Bad Conduct Discharge|NAMALA
+5821-010|Delivery of Personnel to Civilian Authorities|PERS-832
+6110-020|Physical Risk Classification for Officer and Enlisted Personnel on Inactive|PERS-95
+6120-010|Enlisted Physical Qualifications for Certain Duty Assignment and|PERS-40
+6120-020|Physical Examination and Medical Screening of Officer Personnel|PERS-451C
+7000-010|Worthless Checks by Members and/or Their Families|PERS-832
+7000-020|Indebtedness and Financial Responsibility of Members|PERS-832
+7040-010|BUPERSINST 7040.6/7040.7, Financial Management Guide for|OPNAV (N100)
+7220-010|General Information Concerning Pay and Allowances|OPNAV (N13)
+7220-020|Computation of Service for Basic Pay|PERS-82
+7220-030|Computation of Professional Service Dates for Special Pay of|PERS-822
+7220-050|Computation of Disability Retired Pay|PERS-82
+7220-070|Special Pay for Hardship Duty (HDP)|OPNAV (N130)
+7220-075|Guidelines for Hardship Duty Pay (TEMPO) (HDP-T)|OPNAV (N130)
+7220-080|Incentive Pay for Hazardous Duty|OPNAV (N130)
+7220-090|Hazardous Duty Incentive Pay (HDIP) for Diving Duty|OPNAV (N13)
+7220-100|Command Responsibility Pay (CRP)|OPNAV (N130)
+7220-110|Special Pay for Duty Subject to Imminent Danger/Hostile Fire|OPNAV (N130)
+7220-112|Pay and Allowance Continuation Program (PAC)|OPNAV (N130)
+7220-113|Special Compensation for Assistance With Activities of Daily Living|CNIC
+7220-114|Naval Special Warfare Skill Incentive Pay|OPNAV (N137)
+7220-120|Family Separation Allowance (FSA)|OPNAV (N130)
+7220-130|Methods of Computing Retainer Pay for a Member of the Fleet Reserve|PERS-823
+7220-150|Basic Allowance for Subsistence (BAS) - Specialized Terms|OPNAV (N130)
+7220-160|Basic Allowance for Subsistence (BAS) - General Policies|OPNAV (N130)
+7220-180|Basic Allowance for Subsistence (BAS) - Procedures for Service Members|OPNAV (N130)
+7220-182|Basic Allowance for Subsistence (BAS) II|OPNAV (N130)
+7220-210|Dislocation Allowance and SECNAVFIND|PERS-451
+7220-220|Dislocation Allowance (DLA) Entitlement Policy|OPNAV (N130E)
+7220-230|Civilian Clothing Allowance (CCA) for Officers and Enlisted|OPNAV (N131U)
+7220-240|Overseas Station Allowances Policy|OPNAV (N13)
+7220-250|Overseas Cost-of-Living Allowance (COLA) Policy|OPNAV (N13)
+7220-260|Overseas Housing Allowance Policy|OPNAV (N130E)
+7220-270|Overseas Temporary Lodging Allowance (TLA) Policy|OPNAV (N130E)
+7220-280|Continental United States (CONUS) Temporary Lodging Expense (TLE)|OPNAV (N130E)
+7220-300|Advance Pay on Permanent Change of Station|OPNAV (N13)
+7220-310|Advance Pay and Allowances|OPNAV (N13)
+7220-320|Pay and Allowances While on Leave|OPNAV (N13)
+7220-330|Checkage of Pay for Excess Leave|OPNAV (N13)
+7220-340|Lump-Sum Payment for Accrued Leave|OPNAV (N130)
+7220-350|Pay and Allowance While Awaiting on Leave Orders or|OPNAV (N13)
+7220-360|Entitlement to Pay and Allowances While Under Investigation for|OPNAV (N13)
+7220-370|Pay Accounts of Retiring Personnel|PERS-835
+7220-380|Dual Compensation Regulation Applicable to the Navy Reserve|OPNAV (N130)
+7220-390|Sell Back of Leave|OPNAV (N13)
+7220-410|Retroactive Stop Loss Special Pay Compensation|OPNAV (N130)
+
+# CANCELLED OR SUSPENDED — 256 articles. These numbers exist but are DEAD.
+# They must NEVER be cited as current authority.
+
+1000-010 1000-040 1000-050 1000-070 1000-080 1000-131 1001-010 1001-050 1001-155 1050-020
+1050-030 1050-040 1050-060 1050-300 1050-330 1050-370 1050-380 1050-390 1050-420 1050-430
+1050-435 1070-010 1070-040 1070-050 1070-060 1070-070 1070-100 1070-110 1070-120 1070-130
+1070-140 1070-160 1070-170 1070-180 1070-190 1070-200 1070-210 1070-220 1070-280 1070-290
+1070-350 1100-010 1100-040 1131-010 1131-020 1131-030 1132-010 1133-010 1133-030 1133-040
+1133-050 1133-080 1160-080 1160-090 1160-110 1160-130 1200-060 1210-050 1210-060 1210-070
+1210-080 1210-140 1210-290 1212-060 1212-070 1212-080 1213-010 1214-020 1220-061 1220-085
+1220-090 1220-110 1220-120 1220-130 1220-140 1220-150 1220-160 1220-170 1220-180 1220-190
+1220-210 1220-220 1220-230 1220-231 1220-232 1220-233 1220-240 1220-250 1220-260 1220-270
+1220-290 1220-301 1220-302 1220-310 1220-320 1220-330 1220-340 1221-010 1221-020 1223-020
+1300-020 1300-025 1300-027 1300-028 1300-030 1300-040 1300-050 1300-080 1300-140 1300-300
+1300-304 1300-318 1300-319 1300-801 1301-010 1301-020 1301-030 1301-204 1301-206 1301-218
+1301-225 1301-231 1301-232 1301-400 1301-807 1301-811 1301-822 1306-010 1306-020 1306-138
+1306-140 1306-250 1306-606 1306-608 1306-610 1306-612 1306-801 1306-903 1306-908 1306-909
+1306-910 1306-911 1306-922 1306-923 1306-932 1306-933 1306-938 1306-941 1306-951 1306-952
+1306-963 1306-967 1306-969 1306-974 1306-977 1306-978 1306-988 1320-010 1320-040 1320-050
+1320-070 1320-080 1320-130 1320-150 1320-155 1320-160 1320-180 1320-190 1320-302 1320-304
+1320-318 1321-010 1326-021 1326-030 1331-010 1331-020 1420-020 1420-040 1430-030 1440-030
+1440-050 1440-060 1510-010 1510-020 1520-010 1521-010 1530-010 1533-010 1533-020 1542-030
+1600-080 1600-110 1616-020 1630-010 1630-020 1640-040 1640-050 1640-070 1640-080 1640-120
+1640-130 1700-030 1731-020 1740-010 1741-010 1742-010 1746-040 1770-050 1770-070 1770-080
+1770-110 1770-120 1770-130 1770-180 1770-190 1770-220 1770-240 1770-250 1780-010 1800-030
+1800-050 1830-050 1900-010 1910-101 1910-120 1910-122 1910-148 1910-150 1910-170 1910-180
+1910-200 1910-204 1910-400 1910-404 1910-706 1910-808 1910-900 1916-020 1920-150 1920-190
+1920-220 4650-020 4650-030 5000-010 5370-020 6110-010 6150-010 6320-010 7220-040 7220-060
+7220-140 7220-170 7220-190 7220-200 7220-290 7220-400
