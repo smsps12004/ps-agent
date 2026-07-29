@@ -4,28 +4,115 @@ from datetime import datetime
 
 client = Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
 
-ACCESS_CODES = {
-    "BETA001": ("beta", "2026-05-19"),
-    "BETA002": ("beta", "2026-05-19"),
-    "BETA003": ("beta", "2026-05-19"),
-    "SAILOR001": ("individual", "2026-05-12"),
-    "SAILOR002": ("individual", "2026-05-12"),
-    "SAILOR003": ("individual", "2026-05-12"),
-    "SAILOR004": ("individual", "2026-05-12"),
-    "SAILOR005": ("individual", "2026-05-12"),
-    "PSSHOP001": ("shop", "2026-10-12"),
-    "PSSHOP002": ("shop", "2026-10-12"),
-    "PSSHOP003": ("shop", "2026-10-12"),
-}
+# ── ACCESS CODES ──────────────────────────────────────────────────────────────
+# Codes live in Streamlit secrets, NOT in this file. THIS REPO IS PUBLIC — any
+# code written here is readable by anyone on GitHub.
+# Add them in Settings -> Secrets like this:
+#
+#   [access_codes]
+#   "ADM-XXXX-XXXX" = ["admin", "2027-12-31"]
+#   "BTA-XXXX-XXXX" = ["beta", "2026-12-31"]
+#
+# Tiers: admin | beta | individual | shop.  "admin" is exempt from the spend cap.
+def _load_access_codes():
+    raw = st.secrets.get("access_codes", {})
+    codes = {}
+    for code, val in dict(raw).items():
+        parts = [p.strip() for p in val.split(",")] if isinstance(val, str) else [str(p).strip() for p in val]
+        if len(parts) >= 2:
+            codes[code.strip().upper()] = (parts[0], parts[1])
+    return codes
+
+ACCESS_CODES = _load_access_codes()
 
 def check_access(code):
     code = code.strip().upper()
+    if not ACCESS_CODES:
+        return False, "unconfigured"
     if code not in ACCESS_CODES:
         return False, "invalid"
     _, expiry = ACCESS_CODES[code]
-    if datetime.now() > datetime.strptime(expiry, "%Y-%m-%d"):
+    # Code stays valid through the END of its expiry date, not from midnight that morning.
+    expiry_end = datetime.strptime(expiry, "%Y-%m-%d").replace(hour=23, minute=59, second=59)
+    if datetime.now() > expiry_end:
         return False, "expired"
     return True, ACCESS_CODES[code][0]
+
+# ── SPEND GUARD ───────────────────────────────────────────────────────────────
+# Hard ceiling on what this app can spend per day, measured from the REAL token
+# counts the API hands back. Stops a bug, a refresh loop, or a leaked access code
+# from draining the account. Admin tier is exempt so you can never be locked out
+# of your own app. Resets at midnight. Counters are per running app process, so a
+# Streamlit redeploy resets them too — the Console spend limit is the true backstop.
+DAILY_BUDGET_USD  = 5.00
+PRICE_IN_PER_TOK  = 3.00 / 1_000_000    # claude-sonnet-4-6 input
+PRICE_OUT_PER_TOK = 15.00 / 1_000_000   # claude-sonnet-4-6 output
+PRICE_PER_SEARCH  = 0.01                # web_search server tool
+EST_CALL_COST     = 0.15                # reserved before a call; a failed call still costs
+
+@st.cache_resource
+def _budget_state():
+    return {"day": datetime.now().strftime("%Y-%m-%d"), "spent": 0.0, "calls": 0}
+
+def _budget_today():
+    b = _budget_state()
+    today = datetime.now().strftime("%Y-%m-%d")
+    if b["day"] != today:
+        b.update(day=today, spent=0.0, calls=0)
+    return b
+
+def _settle_cost(reserved, response):
+    """Swap the up-front reserve for what the call actually cost."""
+    b = _budget_today()
+    try:
+        u = response.usage
+        cost  = (getattr(u, "input_tokens", 0) or 0) * PRICE_IN_PER_TOK
+        cost += (getattr(u, "output_tokens", 0) or 0) * PRICE_OUT_PER_TOK
+        tool_use = getattr(u, "server_tool_use", None)
+        if tool_use is not None:
+            cost += (getattr(tool_use, "web_search_requests", 0) or 0) * PRICE_PER_SEARCH
+        b["spent"] += cost - reserved
+    except Exception:
+        pass  # keep the reserve if usage is unreadable — fail expensive, not cheap
+
+def _check_budget():
+    if st.session_state.get("access_type") == "admin":
+        return
+    b = _budget_today()
+    if b["spent"] + EST_CALL_COST > DAILY_BUDGET_USD:
+        st.error(
+            "PS Agent has reached its daily usage limit. It resets at midnight. "
+            "If you need access today, contact strategicsailor@gmail.com."
+        )
+        st.stop()
+
+class _GuardedMessages:
+    def __init__(self, inner):
+        self._inner = inner
+
+    def create(self, **kwargs):
+        _check_budget()
+        b = _budget_today()
+        # Reserve BEFORE the call. A call that times out still costs money —
+        # that lesson cost real credits, so the reserve is charged either way.
+        b["spent"] += EST_CALL_COST
+        b["calls"] += 1
+        response = self._inner.create(**kwargs)
+        _settle_cost(EST_CALL_COST, response)
+        return response
+
+    def __getattr__(self, name):
+        return getattr(self._inner, name)
+
+class _GuardedClient:
+    def __init__(self, inner):
+        self._inner = inner
+        self.messages = _GuardedMessages(inner.messages)
+
+    def __getattr__(self, name):
+        return getattr(self._inner, name)
+
+client = _GuardedClient(client)
 
 st.set_page_config(
     page_title="PS Agent | Strategic Sailor",
@@ -202,16 +289,58 @@ if not st.session_state.access_granted:
                 st.rerun()
             elif result == "expired":
                 st.error("This access code has expired. Contact Strategic Sailor to renew.")
+            elif result == "unconfigured":
+                st.error("No access codes are configured for this app yet. "
+                         "Add an [access_codes] section under Settings → Secrets.")
             else:
                 st.error("Invalid access code. Contact Strategic Sailor to get access.")
         st.markdown("---")
         st.caption("Contact: strategicsailor@gmail.com")
     st.stop()
 
-access_label = {"beta": "Beta Tester", "individual": "Sailor", "shop": "PS Shop"}
+access_label = {"admin": "Admin", "beta": "Beta Tester", "individual": "Sailor", "shop": "PS Shop"}
 st.markdown(PS_AGENT_HEADER, unsafe_allow_html=True)
 
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["💬 Ask PS Agent", "📝 Draft a Document", "✍️ Eval Writer", "⚓ Reserve Command Mode", "📊 LES Decoder", "✈️ Travel Assistant"])
+
+CITATION_RULES = """
+
+CITATION INTEGRITY RULES — THESE OVERRIDE EVERY OTHER INSTRUCTION:
+
+You have a web_search tool. Citation accuracy matters more than completeness, more than
+detail, and more than sounding authoritative. A confident wrong citation causes real harm
+to a Sailor's record. An admitted gap causes none.
+
+1. VERIFY BEFORE YOU CITE. Do not state any MILPERSMAN article, BUPERSINST, OPNAVINST,
+   NAVADMIN, RESPERSMAN, JTR chapter, DoD Instruction, or NAVPERS form number from memory.
+   Search for it first. Official sources only: mynavyhr.navy.mil, navy.mil, travel.dod.mil,
+   esd.whs.mil, gsa.gov. Third-party mirrors, study sites, Quizlet, and law-firm summaries
+   are NOT verification.
+
+2. IF YOU CANNOT VERIFY IT, DO NOT PRINT THE NUMBER. Write instead:
+   "[UNVERIFIED — confirm at MyNavy HR before citing in a package]"
+   followed by a plain description of what the reference covers. Never guess a number to
+   fill a gap. Never invent a change number (CH-XX) or a date to make a citation look complete.
+
+3. OFFICE CODES CARRY THE SAME BURDEN. PERS-xx, PERS-xxx, NAVPERSCOM, MNCC, DFAS, and
+   NOSC office codes must be verified against the cognizance listed for that specific
+   article. Do not assume an office's role from its number. Do not swap Active Duty and
+   Reserve offices — confirm which component the office actually serves.
+
+4. RATES, DOLLAR FIGURES, AND PHONE NUMBERS EXPIRE. Per diem rates, meal deduction
+   amounts, BAH figures, pay tables, and help desk numbers change. Any figure in your
+   background knowledge is presumed stale. Search for the current figure, state the
+   fiscal year and effective date you found, and if you cannot confirm it, say so and
+   direct the user to the authoritative lookup rather than printing an old number.
+
+5. MARK YOUR CONFIDENCE. In the References section, tag every entry:
+   [VERIFIED — <source url>] or [UNVERIFIED — confirm before use]
+   An unmarked citation is a failure. If most of your references are unverified, say that
+   plainly at the top of the answer.
+
+6. YOU WILL NOT BE PENALIZED FOR SAYING "I COULD NOT CONFIRM THIS." You will be
+   penalized for a fabricated article number, a fabricated change number, or a
+   misattributed office code. When in doubt, leave it out and say why."""
 
 SYSTEM_PROMPT = """You are PS Agent, an expert Navy Personnel Specialist assistant built by Strategic Sailor. You have the knowledge and experience of a Navy PS1 with 20+ years in the fleet. You assist PS shops, commands, and Sailors with all personnel administration matters.
 
@@ -227,7 +356,7 @@ RESPONSE RULES — FOLLOW EVERY TIME:
 - End every answer with a References section listing every source cited
 - Never cut an answer short — if a process has 15 steps, write all 15 steps
 - If web search returns current policy or a NAVADMIN, incorporate that information into the answer
-- Never tell the user to "check with their chain of command" as a substitute for a real answer — give the real answer first, then note if local command policy may vary"""
+- Never tell the user to "check with their chain of command" as a substitute for a real answer — give the real answer first, then note if local command policy may vary""" + CITATION_RULES
 
 def clean_messages_for_api(messages):
     cleaned = []
@@ -295,7 +424,15 @@ NSIPS DEEP KNOWLEDGE BASE:
 
 13. NSIPS TROUBLE TICKETS: Submit via the NSIPS Help Desk portal at nsipsprod.nmci.navy.mil (CAC required). Required information: UIC, sailor's EDIPI (last 4 SSN if EDIPI unavailable), transaction type, error message/code, steps already attempted, urgency (routine/priority/emergency). Expected response: routine 5-7 business days, priority 24-48 hours, emergency same day. Track tickets via the Help Desk portal using your ticket number. For emergencies affecting pay, call the NSIPS Help Desk directly: DSN 882-1781.
 
-14. MNCC ESCALATION: Escalate to MNCC (1-833-330-6622 or askmncc.ahf.nmci.navy.mil) for: rate/rank corrections requiring NAVPERS approval, pay adjustments older than 2 pay periods, duplicate pay from transfer errors, DEERS sync failures unresolved after 5 business days, DD-214 corrections after separation, bonus discrepancies, IDES/MEB/PEB administrative actions. Have ready: sailor's EDIPI, UIC, specific error or issue description, NSIPS transaction IDs, and any prior correspondence with DFAS or help desk. Document every MNCC interaction with case number and representative name."""
+14. MNCC ESCALATION: Escalate to MNCC (1-833-330-6622 or askmncc.ahf.nmci.navy.mil) for: rate/rank corrections requiring NAVPERS approval, pay adjustments older than 2 pay periods, duplicate pay from transfer errors, DEERS sync failures unresolved after 5 business days, DD-214 corrections after separation, bonus discrepancies, IDES/MEB/PEB administrative actions. Have ready: sailor's EDIPI, UIC, specific error or issue description, NSIPS transaction IDs, and any prior correspondence with DFAS or help desk. Document every MNCC interaction with case number and representative name.
+
+NOTE ON THE NSIPS KNOWLEDGE BASE ABOVE: the navigation paths, error codes (ERR-xxx),
+phone numbers, and DSN numbers listed above are reference material that has NOT been
+independently verified and may be outdated or incorrect. Treat every one of them as
+UNVERIFIED. Before repeating any specific error code, phone number, or menu path to the
+user, search to confirm it. If you cannot confirm it, describe the procedure in general
+terms and tell the user to verify the exact code or number with the NSIPS Help Desk.
+Never present an unconfirmed error code as fact.""" + CITATION_RULES
 
 with tab1:
     tab1_mode = st.radio("", ["💬 General PS Questions", "🖥️ NSIPS Troubleshooter"], horizontal=True, key="tab1_mode")
@@ -458,7 +595,7 @@ NAVPERS 1616/26 BLOCK DEFINITIONS (BUPERSINST 1610.10F):
 - Block 41 (RETENTION RECOMMENDATION): State whether Navy should retain, reenlist, or separate and why.
 - Block 43 (COMMENTS ON PERFORMANCE): Main narrative. Bullet-formatted accomplishments and results. Each bullet ~100-120 characters. Up to ~16 lines.
 - Block 44 (QUALIFICATIONS/ACHIEVEMENTS): Education, training, awards, community involvement. Bullet format.
-"""
+""" + CITATION_RULES
 
 BLOCK_DESCRIPTIONS = {
     "Block 43 — Comments on Performance": "Main narrative. Bullet-formatted accomplishments, leadership, and quantified results. ~100-120 chars per bullet, up to ~16 lines.",
@@ -1061,7 +1198,7 @@ Common things to flag:
 
 Always end with: "This is an explanation tool only. Contact your PS shop for any corrections to your pay record."
 
-Never recommend specific dollar amounts or tell the sailor what their pay should be — only explain what the LES shows and flag anomalies for follow-up."""
+Never recommend specific dollar amounts or tell the sailor what their pay should be — only explain what the LES shows and flag anomalies for follow-up.""" + CITATION_RULES
 
 # ── LES DECODER TAB ────────────────────────────────────────────────────────────
 with tab5:
@@ -1414,7 +1551,17 @@ NSIPS/MMPA TRAVEL IMPACT:
 - DLA is processed through DFAS after NSIPS reflects PCS gain
 - MMPA corrections for travel overpayments: submit DD 2131 to DFAS
 
-Always cite the applicable JTR chapter and verify rates at GSA.gov (CONUS) or PDTATAC (OCONUS)."""
+Always cite the applicable JTR chapter and verify rates at GSA.gov (CONUS) or PDTATAC (OCONUS).
+
+CRITICAL — THE PER DIEM RATES LISTED ABOVE ARE EXPIRED. The "FY2025" standard CONUS rate,
+the M&IE figure, and the government meal deduction amounts ($13.60 / $17.00 / $37.40) are
+from a closed fiscal year and are WRONG for the current fiscal year. DO NOT use them in
+any calculation and DO NOT quote them to the user as current. Before performing any per
+diem math, search GSA.gov (CONUS) or the PDTATAC/DTMO site (OCONUS) for the rate that
+applies to the specific location AND the specific travel dates. State the effective date
+of the rate you used. If you cannot retrieve the current rate, do NOT substitute the old
+one — show the user the calculation method with the rate left blank and send them to the
+GSA lookup for that location.""" + CITATION_RULES
 
 TRAVEL_SECTIONS = [
     "1 — Travel Claims",
@@ -1843,6 +1990,12 @@ with st.sidebar:
     st.markdown(f"**Access:** {access_label.get(st.session_state.access_type, 'User')}")
     st.markdown("**Version:** 1.0 Beta")
     st.markdown("**By:** Strategic Sailor")
+    if st.session_state.get("access_type") == "admin":
+        _b = _budget_today()
+        st.divider()
+        st.caption("🔒 Admin — today's spend")
+        st.progress(min(_b["spent"] / DAILY_BUDGET_USD, 1.0))
+        st.caption(f"${_b['spent']:.2f} of ${DAILY_BUDGET_USD:.2f} · {_b['calls']} calls")
     st.divider()
     st.markdown("✅ Reenlistments & Extensions")
     st.markdown("✅ Separations & Discharges")
